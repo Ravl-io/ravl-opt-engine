@@ -1,0 +1,26 @@
+{
+  "name": "ravl-optimization-engine",
+  "version": "13.0.0",
+  "description": "RAVLs Optimization Engine deployment templates, automation runbooks, and workbook assets.",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "pwsh -File ./src/optimization-engine/Deploy-AzureOptimizationEngine.ps1",
+    "deploy-partial-upgrade": "pwsh -File ./src/optimization-engine/Deploy-AzureOptimizationEngine.ps1 -DoPartialUpgrade"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ravl-io/ravl-opt-engine.git"
+  },
+  "keywords": [
+    "optimization",
+    "azure",
+    "cost-management",
+    "automation"
+  ],
+  "author": "RAVL",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Ravl-io/ravl-opt-engine/issues"
+  },
+  "homepage": "https://github.com/Ravl-io/ravl-opt-engine"
+}

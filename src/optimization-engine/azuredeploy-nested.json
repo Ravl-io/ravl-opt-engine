@@ -1,0 +1,3790 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.40.2.10011",
+      "templateHash": "1449688155861839023"
+    }
+  },
+  "parameters": {
+    "projectLocation": {
+      "type": "string"
+    },
+    "templateLocation": {
+      "type": "string"
+    },
+    "storageAccountName": {
+      "type": "string"
+    },
+    "automationAccountName": {
+      "type": "string"
+    },
+    "sqlServerName": {
+      "type": "string"
+    },
+    "sqlServerAlreadyExists": {
+      "type": "bool"
+    },
+    "sqlDatabaseName": {
+      "type": "string"
+    },
+    "logAnalyticsReuse": {
+      "type": "bool"
+    },
+    "logAnalyticsWorkspaceName": {
+      "type": "string"
+    },
+    "logAnalyticsWorkspaceRG": {
+      "type": "string"
+    },
+    "logAnalyticsRetentionDays": {
+      "type": "int"
+    },
+    "sqlBackupRetentionDays": {
+      "type": "int"
+    },
+    "userObjectId": {
+      "type": "string"
+    },
+    "userPrincipalName": {
+      "type": "string"
+    },
+    "sqlAdminPrincipalType": {
+      "type": "string"
+    },
+    "cloudEnvironment": {
+      "type": "string"
+    },
+    "authenticationOption": {
+      "type": "string"
+    },
+    "baseTime": {
+      "type": "string"
+    },
+    "resourceTags": {
+      "type": "object"
+    },
+    "contributorRoleAssignmentGuid": {
+      "type": "string"
+    },
+    "argDiskExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "argVhdExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "argVmExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "argVmssExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "argAvailSetExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "advisorExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "consumptionExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "aadObjectsExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "argLoadBalancersExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "argAppGWsExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "rbacExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "argResContainersExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "argNICExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "argNSGExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "argPublicIPExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "argVNetExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "argSqlDbExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "policyStateExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "monitorVmssCpuMaxExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "monitorVmssCpuAvgExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "monitorVmssMemoryMinExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "monitorSqlDbDtuMaxExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "monitorSqlDbDtuAvgExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "monitorAppServiceCpuMaxExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "monitorAppServiceCpuAvgExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "monitorAppServiceMemoryMaxExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "monitorAppServiceMemoryAvgExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "monitorDiskIOPSAvgExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "monitorDiskMBPsAvgExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "argAppServicePlanExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "pricesheetExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "reservationPricesExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "reservationUsageExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "savingsPlansUsageExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "argDiskIngestJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "argVhdIngestJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "argVmIngestJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "argVmssIngestJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "argAvailSetIngestJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "advisorIngestJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "remediationLogsIngestJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "consumptionIngestJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "aadObjectsIngestJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "argLoadBalancersIngestJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "argAppGWsIngestJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "argResContainersIngestJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "rbacIngestJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "argNICIngestJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "argNSGIngestJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "argPublicIPIngestJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "argVNetIngestJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "argSqlDbIngestJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "policyStateIngestJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "monitorIngestJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "argAppServicePlanIngestJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "pricesheetIngestJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "reservationPricesIngestJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "reservationUsageIngestJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "savingsPlansUsageIngestJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "unattachedDisksRecommendationJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "advisorCostAugmentedRecommendationJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "advisorAsIsRecommendationJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "vmsHaRecommendationJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "vmOptimizationsRecommendationJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "aadExpiringCredsRecommendationJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "unusedLoadBalancersRecommendationJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "unusedAppGWsRecommendationJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "armOptimizationsRecommendationJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "vnetOptimizationsRecommendationJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "vmssOptimizationsRecommendationJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "sqldbOptimizationsRecommendationJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "storageOptimizationsRecommendationJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "appServiceOptimizationsRecommendationJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "diskOptimizationsRecommendationJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "recommendationsIngestJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "recommendationsLogAnalyticsIngestJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "suppressionsLogAnalyticsIngestJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "recommendationsCleanUpJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "awsEC2ExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "awsEC2IngestJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "awsEBSUnattachedExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "awsEBSUnattachedIngestJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "awsEBSUnderutilizedExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "awsEBSUnderutilizedIngestJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "awsEIPExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "awsEIPIngestJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "awsRDSExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "awsRDSIngestJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "awsLBExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "awsLBIngestJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "awsLambdaExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "awsLambdaIngestJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "awsECSExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "awsECSIngestJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "awsElasticBeanstalkExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "awsElasticBeanstalkIngestJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "awsBucketsExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "awsBucketsIngestJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "gcpVMsExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "gcpVMsIngestJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "gcpVMsOffHoursExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "gcpVMsOffHoursIngestJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "gcpIdleDisksExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "gcpIdleDisksIngestJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "gcpUnderutilizedDisksExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "gcpUnderutilizedDisksIngestJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "gcpUnmanagedDisksExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "gcpUnmanagedDisksIngestJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "gcpIdleServicesExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "gcpIdleServicesIngestJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "gcpUnattachedIPsExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "gcpUnattachedIPsIngestJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "gcpSQLExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "gcpSQLIngestJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "gcpBucketsExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "gcpBucketsIngestJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "gcpLBExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "gcpLBIngestJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "gcpFOCUSIngestJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "vmOffHoursExportJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "vmOffHoursIngestJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "awsEC2RecommendationJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "awsEBSUnattachedRecommendationJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "awsEBSUnderutilizedRecommendationJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "awsEIPRecommendationJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "awsRDSRecommendationJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "awsLBRecommendationJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "awsLambdaRecommendationJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "awsECSRecommendationJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "awsElasticBeanstalkRecommendationJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "awsBucketsRecommendationJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "gcpVMsRecommendationJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "gcpVMsOffHoursRecommendationJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "gcpIdleDisksRecommendationJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "gcpUnderutilizedDisksRecommendationJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "gcpSQLRecommendationJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "gcpIdleServicesRecommendationJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "gcpUnattachedIPsRecommendationJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "gcpLBRecommendationJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "gcpBucketsRecommendationJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "underutilizedVMsRecommendationJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "unmanagedDisksRecommendationJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "vmOffHoursRecommendationJobId": {
+      "type": "string",
+      "defaultValue": "[newGuid()]"
+    },
+    "roleContributor": {
+      "type": "string",
+      "defaultValue": "[format('/subscriptions/{0}/providers/Microsoft.Authorization/roleDefinitions/ba92f5b4-2d11-453d-a403-e96b0029c9fe', subscription().subscriptionId)]"
+    },
+    "enableDefaultTelemetry": {
+      "type": "bool",
+      "defaultValue": true,
+      "metadata": {
+        "description": "Optional. Enable telemetry to track anonymous module usage trends, monitor for bugs, and improve future releases."
+      }
+    }
+  },
+  "variables": {
+    "telemetryId": "00f120b5-2007-6120-0000-000000000a0e",
+    "finOpsToolkitVersion": "13.0",
+    "advisorExportsRunbookName": "Export-AdvisorRecommendationsToBlobStorage",
+    "argVmExportsRunbookName": "Export-ARGVirtualMachinesPropertiesToBlobStorage",
+    "argVmssExportsRunbookName": "Export-ARGVMSSPropertiesToBlobStorage",
+    "argDisksExportsRunbookName": "Export-ARGManagedDisksPropertiesToBlobStorage",
+    "argVhdExportsRunbookName": "Export-ARGUnmanagedDisksPropertiesToBlobStorage",
+    "argAvailSetExportsRunbookName": "Export-ARGAvailabilitySetPropertiesToBlobStorage",
+    "consumptionExportsRunbookName": "Export-ConsumptionToBlobStorage",
+    "aadObjectsExportsRunbookName": "Export-AADObjectsToBlobStorage",
+    "argLoadBalancersExportsRunbookName": "Export-ARGLoadBalancerPropertiesToBlobStorage",
+    "argAppGWsExportsRunbookName": "Export-ARGAppGatewayPropertiesToBlobStorage",
+    "argResContainersExportsRunbookName": "Export-ARGResourceContainersPropertiesToBlobStorage",
+    "rbacExportsRunbookName": "Export-RBACAssignmentsToBlobStorage",
+    "argNICExportsRunbookName": "Export-ARGNICPropertiesToBlobStorage",
+    "argNSGExportsRunbookName": "Export-ARGNSGPropertiesToBlobStorage",
+    "argVNetExportsRunbookName": "Export-ARGVNetPropertiesToBlobStorage",
+    "argPublicIpExportsRunbookName": "Export-ARGPublicIpPropertiesToBlobStorage",
+    "argSqlDbExportsRunbookName": "Export-ARGSqlDatabasePropertiesToBlobStorage",
+    "policyStateExportsRunbookName": "Export-PolicyComplianceToBlobStorage",
+    "monitorExportsRunbookName": "Export-AzMonitorMetricsToBlobStorage",
+    "argAppServicePlanExportsRunbookName": "Export-ARGAppServicePlanPropertiesToBlobStorage",
+    "reservationsExportsRunbookName": "Export-ReservationsUsageToBlobStorage",
+    "reservationsPriceExportsRunbookName": "Export-ReservationsPriceToBlobStorage",
+    "priceSheetExportsRunbookName": "Export-PriceSheetToBlobStorage",
+    "savingsPlansExportsRunbookName": "Export-SavingsPlansUsageToBlobStorage",
+    "vmOffHoursExportsRunbookName": "Export-VMsUnderutilizedOffHoursToBlobStorage",
+    "awsEC2ExportsRunbookName": "Export-AWSUnderutilizedEC2Instances",
+    "awsEBSUnattachedExportsRunbookName": "Export-AWSUnattachedEBSVolumes",
+    "awsEBSUnderutilizedExportsRunbookName": "Export-AWSUnderutilizedEBSVolumes",
+    "awsEIPExportsRunbookName": "Export-AWSUnattachedEIPs",
+    "awsRDSExportsRunbookName": "Export-AWSUnderutilizedRDSInstances",
+    "awsLBExportsRunbookName": "Export-AWSUnderutilizedLoadBalancers",
+    "awsLambdaExportsRunbookName": "Export-AWSIdleLambdaFunctions",
+    "awsECSExportsRunbookName": "Export-AWSIdleECSServices",
+    "awsElasticBeanstalkExportsRunbookName": "Export-AWSIdleElasticBeanstalkEnvironments",
+    "awsBucketsExportsRunbookName": "Export-AWSbucketsWithoutRetention",
+    "gcpVMsExportsRunbookName": "Export-GCPUnderutilizedVMs",
+    "gcpVMsOffHoursExportsRunbookName": "Export-GCPUnderutilizedVMsOffHours",
+    "gcpIdleDisksExportsRunbookName": "Export-GCPidleDisks",
+    "gcpUnderutilizedDisksExportsRunbookName": "Export-GCPunderutilizedDisks",
+    "gcpUnmanagedDisksExportsRunbookName": "Export-GCPunmanagedDisks",
+    "gcpIdleServicesExportsRunbookName": "Export-GCPIdleServices",
+    "gcpUnattachedIPsExportsRunbookName": "Export-GCPUnattachedIPs",
+    "gcpSQLExportsRunbookName": "Export-GCPunderutilizedSQL",
+    "gcpBucketsExportsRunbookName": "Export-GCPbucketsWithoutRetention",
+    "gcpLBExportsRunbookName": "Export-GCPunusedLoadBalancers",
+    "gcpFOCUSIngestRunbookName": "GCP-IngestFOCUS",
+    "awsEC2RecommendationsRunbookName": "Recommend-AWSUnderutilizedEC2Instances",
+    "awsEBSUnattachedRecommendationsRunbookName": "Recommend-AWSUnattachedEBSVolumes",
+    "awsEBSUnderutilizedRecommendationsRunbookName": "Recommend-AWSUnderutilizedEBSVolumes",
+    "awsEIPRecommendationsRunbookName": "Recommend-AWSUnattachedEIPs",
+    "awsRDSRecommendationsRunbookName": "Recommend-AWSUnderutilizedRDSInstances",
+    "awsLBRecommendationsRunbookName": "Recommend-AWSUnderutilizedLoadBalancers",
+    "awsLambdaRecommendationsRunbookName": "Recommend-AWSIdleLambdaFunctions",
+    "awsECSRecommendationsRunbookName": "Recommend-AWSIdleECSServices",
+    "awsElasticBeanstalkRecommendationsRunbookName": "Recommend-AWSIdleElasticBeanstalkEnvironments",
+    "awsBucketsRecommendationsRunbookName": "Recommend-AWSBucketsWithoutRetention",
+    "gcpVMsRecommendationsRunbookName": "Recommend-GCPUnderutilizedVMs",
+    "gcpVMsOffHoursRecommendationsRunbookName": "Recommend-GCPUnderutilizedVMsOffHours",
+    "gcpIdleDisksRecommendationsRunbookName": "Recommend-GCPidleDisks",
+    "gcpUnderutilizedDisksRecommendationsRunbookName": "Recommend-GCPUnderutilizedDisks",
+    "gcpSQLRecommendationsRunbookName": "Recommend-GCPUnderutilizedCloudSQL",
+    "gcpIdleServicesRecommendationsRunbookName": "Recommend-GCPIdleServices",
+    "gcpUnattachedIPsRecommendationsRunbookName": "Recommend-GCPUnattachedIPs",
+    "gcpLBRecommendationsRunbookName": "Recommend-GCPUnusedLoadBalancers",
+    "gcpBucketsRecommendationsRunbookName": "Recommend-BucketsWithoutRetention",
+    "underutilizedVMsRecommendationsRunbookName": "Recommend-UnderutilizedVMs",
+    "unmanagedDisksRecommendationsRunbookName": "Recommend-UnmanagedDisks",
+    "vmOffHoursRecommendationsRunbookName": "Recommend-VMsUnderutilizedOffHoursToBlobStorage",
+    "distributorOrchestratorRunbookName": "Trigger-OptimizationEngineDistributor",
+    "vmOffHoursExportsScheduleName": "AzureOptimization_ExportVMsOffHoursDaily",
+    "awsEC2ExportsScheduleName": "AzureOptimization_ExportAWSEC2Schedule",
+    "awsEBSUnattachedExportsScheduleName": "AzureOptimization_ExportAWSEBSUnattachedSchedule",
+    "awsEBSUnderutilizedExportsScheduleName": "AzureOptimization_ExportAWSEBSUnderutilizedSchedule",
+    "awsEIPExportsScheduleName": "AzureOptimization_ExportAWSEIPSchedule",
+    "awsRDSExportsScheduleName": "AzureOptimization_ExportAWSRDSSchedule",
+    "awsLBExportsScheduleName": "AzureOptimization_ExportAWSLBSchedule",
+    "awsLambdaExportsScheduleName": "AzureOptimization_ExportAWSLambdaSchedule",
+    "awsECSExportsScheduleName": "AzureOptimization_ExportAWSECSSchedule",
+    "awsElasticBeanstalkExportsScheduleName": "AzureOptimization_ExportAWSElasticBeanstalkSchedule",
+    "awsBucketsExportsScheduleName": "AzureOptimization_ExportAWSBucketsSchedule",
+    "gcpVMsExportsScheduleName": "AzureOptimization_ExportGCPVMsSchedule",
+    "gcpVMsOffHoursExportsScheduleName": "AzureOptimization_ExportGCPVMsOffHoursSchedule",
+    "gcpIdleDisksExportsScheduleName": "AzureOptimization_ExportGCPIdleDisksSchedule",
+    "gcpUnderutilizedDisksExportsScheduleName": "AzureOptimization_ExportGCPUnderutilizedDisksSchedule",
+    "gcpUnmanagedDisksExportsScheduleName": "AzureOptimization_ExportGCPUnmanagedDisksSchedule",
+    "gcpIdleServicesExportsScheduleName": "AzureOptimization_ExportGCPIdleServicesSchedule",
+    "gcpUnattachedIPsExportsScheduleName": "AzureOptimization_ExportGCPUnattachedIPsSchedule",
+    "gcpSQLExportsScheduleName": "AzureOptimization_ExportGCPSQLSchedule",
+    "gcpBucketsExportsScheduleName": "AzureOptimization_ExportGCPBucketsSchedule",
+    "gcpLBExportsScheduleName": "AzureOptimization_ExportGCPLBSchedule",
+    "gcpFOCUSIngestScheduleName": "AzureOptimization_IngestGCPFOCUSSchedule",
+    "advisorExportsScheduleName": "AzureOptimization_ExportAdvisorWeekly",
+    "argExportsScheduleName": "AzureOptimization_ExportARGDaily",
+    "consumptionExportsScheduleName": "AzureOptimization_ExportConsumptionDaily",
+    "aadObjectsExportsScheduleName": "AzureOptimization_ExportAADObjectsDaily",
+    "rbacExportsScheduleName": "AzureOptimization_ExportRBACDaily",
+    "policyStateExportsScheduleName": "AzureOptimization_ExportPolicyStateDaily",
+    "monitorVmssCpuMaxExportsScheduleName": "AzureOptimization_ExportMonitorVmssCpuMaxHourly",
+    "monitorVmssCpuAvgExportsScheduleName": "AzureOptimization_ExportMonitorVmssCpuAvgHourly",
+    "monitorVmssMemoryMinExportsScheduleName": "AzureOptimization_ExportMonitorVmssMemoryMinHourly",
+    "monitorSqlDbDtuMaxExportsScheduleName": "AzureOptimization_ExportMonitorSqlDbDtuMaxHourly",
+    "monitorSqlDbDtuAvgExportsScheduleName": "AzureOptimization_ExportMonitorSqlDbDtuAvgHourly",
+    "monitorAppServiceCpuMaxExportsScheduleName": "AzureOptimization_ExportMonitorAppServiceCpuMaxHourly",
+    "monitorAppServiceCpuAvgExportsScheduleName": "AzureOptimization_ExportMonitorAppServiceCpuAvgHourly",
+    "monitorAppServiceMemoryMaxExportsScheduleName": "AzureOptimization_ExportMonitorAppServiceMemoryMaxHourly",
+    "monitorAppServiceMemoryAvgExportsScheduleName": "AzureOptimization_ExportMonitorAppServiceMemoryAvgHourly",
+    "monitorDiskIOPSAvgExportsScheduleName": "AzureOptimization_ExportMonitorDiskIOPSHourly",
+    "monitorDiskMBPsAvgExportsScheduleName": "AzureOptimization_ExportMonitorDiskMBPsHourly",
+    "priceExportsScheduleName": "AzureOptimization_ExportPricesWeekly",
+    "reservationsUsageExportsScheduleName": "AzureOptimization_ExportReservationsDaily",
+    "savingsPlansUsageExportsScheduleName": "AzureOptimization_ExportSavingsPlansDaily",
+    "csvExportsSchedules": [
+      {
+        "exportSchedule": "[variables('argExportsScheduleName')]",
+        "exportDescription": "Daily Azure Resource Graph exports",
+        "exportTimeOffset": "PT1H05M",
+        "exportFrequency": "Day"
+      },
+      {
+        "exportSchedule": "[variables('advisorExportsScheduleName')]",
+        "exportDescription": "Weekly Azure Advisor exports",
+        "exportTimeOffset": "PT1H15M",
+        "exportFrequency": "Week"
+      },
+      {
+        "exportSchedule": "[variables('consumptionExportsScheduleName')]",
+        "exportDescription": "Daily Azure Consumption exports",
+        "exportTimeOffset": "PT1H",
+        "exportFrequency": "Day"
+      },
+      {
+        "exportSchedule": "[variables('aadObjectsExportsScheduleName')]",
+        "exportDescription": "Daily Microsoft Entra Objects exports",
+        "exportTimeOffset": "PT1H",
+        "exportFrequency": "Day"
+      },
+      {
+        "exportSchedule": "[variables('rbacExportsScheduleName')]",
+        "exportDescription": "Daily Azure RBAC exports",
+        "exportTimeOffset": "PT1H02M",
+        "exportFrequency": "Day"
+      },
+      {
+        "exportSchedule": "[variables('policyStateExportsScheduleName')]",
+        "exportDescription": "Daily Azure Policy State exports",
+        "exportTimeOffset": "PT1H",
+        "exportFrequency": "Day"
+      },
+      {
+        "exportSchedule": "[variables('monitorVmssCpuAvgExportsScheduleName')]",
+        "exportDescription": "Hourly Azure Monitor metrics exports for VMSS Percentage CPU (Avg.)",
+        "exportTimeOffset": "PT1H15M",
+        "exportFrequency": "Hour"
+      },
+      {
+        "exportSchedule": "[variables('monitorVmssCpuMaxExportsScheduleName')]",
+        "exportDescription": "Hourly Azure Monitor metrics exports for VMSS Percentage CPU (Max.)",
+        "exportTimeOffset": "PT1H15M",
+        "exportFrequency": "Hour"
+      },
+      {
+        "exportSchedule": "[variables('monitorVmssMemoryMinExportsScheduleName')]",
+        "exportDescription": "Hourly Azure Monitor metrics exports for VMSS Available Memory (Min.)",
+        "exportTimeOffset": "PT1H15M",
+        "exportFrequency": "Hour"
+      },
+      {
+        "exportSchedule": "[variables('monitorSqlDbDtuMaxExportsScheduleName')]",
+        "exportDescription": "Hourly Azure Monitor metrics exports for SQL Database Percentage DTU (Max.)",
+        "exportTimeOffset": "PT1H15M",
+        "exportFrequency": "Hour"
+      },
+      {
+        "exportSchedule": "[variables('monitorSqlDbDtuAvgExportsScheduleName')]",
+        "exportDescription": "Hourly Azure Monitor metrics exports for SQL Database Percentage DTU (Avg.)",
+        "exportTimeOffset": "PT1H16M",
+        "exportFrequency": "Hour"
+      },
+      {
+        "exportSchedule": "[variables('monitorAppServiceCpuAvgExportsScheduleName')]",
+        "exportDescription": "Hourly Azure Monitor metrics exports for App Service Percentage CPU (Avg.)",
+        "exportTimeOffset": "PT1H16M",
+        "exportFrequency": "Hour"
+      },
+      {
+        "exportSchedule": "[variables('monitorAppServiceCpuMaxExportsScheduleName')]",
+        "exportDescription": "Hourly Azure Monitor metrics exports for App Service Percentage CPU (Max.)",
+        "exportTimeOffset": "PT1H16M",
+        "exportFrequency": "Hour"
+      },
+      {
+        "exportSchedule": "[variables('monitorAppServiceMemoryAvgExportsScheduleName')]",
+        "exportDescription": "Hourly Azure Monitor metrics exports for App Service Percentage RAM (Avg.)",
+        "exportTimeOffset": "PT1H16M",
+        "exportFrequency": "Hour"
+      },
+      {
+        "exportSchedule": "[variables('monitorAppServiceMemoryMaxExportsScheduleName')]",
+        "exportDescription": "Hourly Azure Monitor metrics exports for App Service Percentage RAM (Max.)",
+        "exportTimeOffset": "PT1H17M",
+        "exportFrequency": "Hour"
+      },
+      {
+        "exportSchedule": "[variables('monitorDiskIOPSAvgExportsScheduleName')]",
+        "exportDescription": "Hourly Azure Monitor metrics exports for Disk IOPS (Avg.)",
+        "exportTimeOffset": "PT1H17M",
+        "exportFrequency": "Hour"
+      },
+      {
+        "exportSchedule": "[variables('monitorDiskMBPsAvgExportsScheduleName')]",
+        "exportDescription": "Hourly Azure Monitor metrics exports for Disk MBPs (Avg.)",
+        "exportTimeOffset": "PT1H17M",
+        "exportFrequency": "Hour"
+      },
+      {
+        "exportSchedule": "[variables('priceExportsScheduleName')]",
+        "exportDescription": "Weekly Pricesheet and Reservation Prices exports",
+        "exportTimeOffset": "PT1H35M",
+        "exportFrequency": "Week"
+      },
+      {
+        "exportSchedule": "[variables('reservationsUsageExportsScheduleName')]",
+        "exportDescription": "Daily Reservation Usage exports",
+        "exportTimeOffset": "PT2H",
+        "exportFrequency": "Day"
+      },
+      {
+        "exportSchedule": "[variables('savingsPlansUsageExportsScheduleName')]",
+        "exportDescription": "Daily Savings Plans Usage exports",
+        "exportTimeOffset": "PT2H05M",
+        "exportFrequency": "Day"
+      },
+      {
+        "exportSchedule": "[variables('vmOffHoursExportsScheduleName')]",
+        "exportDescription": "Daily VM off-hours underutilization exports",
+        "exportTimeOffset": "PT1H38M",
+        "exportFrequency": "Day"
+      },
+      {
+        "exportSchedule": "[variables('awsEC2ExportsScheduleName')]",
+        "exportDescription": "Daily AWS EC2 underutilized instances exports",
+        "exportTimeOffset": "PT3H00M",
+        "exportFrequency": "Day"
+      },
+      {
+        "exportSchedule": "[variables('awsEBSUnattachedExportsScheduleName')]",
+        "exportDescription": "Daily AWS unattached EBS volumes exports",
+        "exportTimeOffset": "PT3H01M",
+        "exportFrequency": "Day"
+      },
+      {
+        "exportSchedule": "[variables('awsEBSUnderutilizedExportsScheduleName')]",
+        "exportDescription": "Daily AWS underutilized EBS volumes exports",
+        "exportTimeOffset": "PT3H02M",
+        "exportFrequency": "Day"
+      },
+      {
+        "exportSchedule": "[variables('awsEIPExportsScheduleName')]",
+        "exportDescription": "Daily AWS unattached EIPs exports",
+        "exportTimeOffset": "PT3H03M",
+        "exportFrequency": "Day"
+      },
+      {
+        "exportSchedule": "[variables('awsRDSExportsScheduleName')]",
+        "exportDescription": "Daily AWS underutilized RDS instances exports",
+        "exportTimeOffset": "PT3H04M",
+        "exportFrequency": "Day"
+      },
+      {
+        "exportSchedule": "[variables('awsLBExportsScheduleName')]",
+        "exportDescription": "Daily AWS underutilized Load Balancers exports",
+        "exportTimeOffset": "PT3H05M",
+        "exportFrequency": "Day"
+      },
+      {
+        "exportSchedule": "[variables('awsLambdaExportsScheduleName')]",
+        "exportDescription": "Daily AWS idle Lambda functions exports",
+        "exportTimeOffset": "PT3H06M",
+        "exportFrequency": "Day"
+      },
+      {
+        "exportSchedule": "[variables('awsECSExportsScheduleName')]",
+        "exportDescription": "Daily AWS idle ECS services exports",
+        "exportTimeOffset": "PT3H07M",
+        "exportFrequency": "Day"
+      },
+      {
+        "exportSchedule": "[variables('awsElasticBeanstalkExportsScheduleName')]",
+        "exportDescription": "Daily AWS idle Elastic Beanstalk environments exports",
+        "exportTimeOffset": "PT3H08M",
+        "exportFrequency": "Day"
+      },
+      {
+        "exportSchedule": "[variables('awsBucketsExportsScheduleName')]",
+        "exportDescription": "Daily AWS buckets without retention exports",
+        "exportTimeOffset": "PT3H09M",
+        "exportFrequency": "Day"
+      },
+      {
+        "exportSchedule": "[variables('gcpVMsExportsScheduleName')]",
+        "exportDescription": "Daily GCP underutilized VMs exports",
+        "exportTimeOffset": "PT4H00M",
+        "exportFrequency": "Day"
+      },
+      {
+        "exportSchedule": "[variables('gcpVMsOffHoursExportsScheduleName')]",
+        "exportDescription": "Daily GCP underutilized VMs off-hours exports",
+        "exportTimeOffset": "PT4H01M",
+        "exportFrequency": "Day"
+      },
+      {
+        "exportSchedule": "[variables('gcpIdleDisksExportsScheduleName')]",
+        "exportDescription": "Daily GCP idle disks exports",
+        "exportTimeOffset": "PT4H02M",
+        "exportFrequency": "Day"
+      },
+      {
+        "exportSchedule": "[variables('gcpUnderutilizedDisksExportsScheduleName')]",
+        "exportDescription": "Daily GCP underutilized disks exports",
+        "exportTimeOffset": "PT4H03M",
+        "exportFrequency": "Day"
+      },
+      {
+        "exportSchedule": "[variables('gcpUnmanagedDisksExportsScheduleName')]",
+        "exportDescription": "Daily GCP unmanaged disks exports",
+        "exportTimeOffset": "PT4H04M",
+        "exportFrequency": "Day"
+      },
+      {
+        "exportSchedule": "[variables('gcpIdleServicesExportsScheduleName')]",
+        "exportDescription": "Daily GCP idle services exports",
+        "exportTimeOffset": "PT4H05M",
+        "exportFrequency": "Day"
+      },
+      {
+        "exportSchedule": "[variables('gcpUnattachedIPsExportsScheduleName')]",
+        "exportDescription": "Daily GCP unattached IPs exports",
+        "exportTimeOffset": "PT4H06M",
+        "exportFrequency": "Day"
+      },
+      {
+        "exportSchedule": "[variables('gcpSQLExportsScheduleName')]",
+        "exportDescription": "Daily GCP underutilized Cloud SQL exports",
+        "exportTimeOffset": "PT4H07M",
+        "exportFrequency": "Day"
+      },
+      {
+        "exportSchedule": "[variables('gcpBucketsExportsScheduleName')]",
+        "exportDescription": "Daily GCP buckets without retention exports",
+        "exportTimeOffset": "PT4H08M",
+        "exportFrequency": "Day"
+      },
+      {
+        "exportSchedule": "[variables('gcpLBExportsScheduleName')]",
+        "exportDescription": "Daily GCP unused Load Balancers exports",
+        "exportTimeOffset": "PT4H09M",
+        "exportFrequency": "Day"
+      },
+      {
+        "exportSchedule": "[variables('gcpFOCUSIngestScheduleName')]",
+        "exportDescription": "Daily GCP FOCUS ingest",
+        "exportTimeOffset": "PT4H10M",
+        "exportFrequency": "Day"
+      }
+    ],
+    "csvExports": [
+      {
+        "runbookName": "[variables('advisorExportsRunbookName')]",
+        "isOneToMany": false,
+        "containerName": "advisorexports",
+        "variableName": "AzureOptimization_AdvisorContainer",
+        "variableDescription": "The Storage Account container where Azure Advisor exports are dumped to",
+        "ingestSchedule": "AzureOptimization_IngestAdvisorWeekly",
+        "ingestDescription": "Weekly Azure Advisor recommendations ingests",
+        "ingestTimeOffset": "PT1H45M",
+        "ingestFrequency": "Week",
+        "ingestJobId": "[parameters('advisorIngestJobId')]",
+        "exportSchedule": "[variables('advisorExportsScheduleName')]",
+        "exportJobId": "[parameters('advisorExportJobId')]"
+      },
+      {
+        "runbookName": "[variables('argVmExportsRunbookName')]",
+        "isOneToMany": false,
+        "containerName": "argvmexports",
+        "variableName": "AzureOptimization_ARGVMContainer",
+        "variableDescription": "The Storage Account container where Azure Resource Graph Virtual Machine exports are dumped to",
+        "ingestSchedule": "AzureOptimization_IngestARGVMsDaily",
+        "ingestDescription": "Daily Azure Resource Graph Virtual Machines ingests",
+        "ingestTimeOffset": "PT1H30M",
+        "ingestFrequency": "Day",
+        "ingestJobId": "[parameters('argVmIngestJobId')]",
+        "exportSchedule": "[variables('argExportsScheduleName')]",
+        "exportJobId": "[parameters('argVmExportJobId')]"
+      },
+      {
+        "runbookName": "[variables('argVmssExportsRunbookName')]",
+        "isOneToMany": false,
+        "containerName": "argvmssexports",
+        "variableName": "AzureOptimization_ARGVMSSContainer",
+        "variableDescription": "The Storage Account container where Azure Resource Graph VMSS exports are dumped to",
+        "ingestSchedule": "AzureOptimization_IngestARGVMSSDaily",
+        "ingestDescription": "Daily Azure Resource Graph VMSS ingests",
+        "ingestTimeOffset": "PT1H30M",
+        "ingestFrequency": "Day",
+        "ingestJobId": "[parameters('argVmssIngestJobId')]",
+        "exportSchedule": "[variables('argExportsScheduleName')]",
+        "exportJobId": "[parameters('argVmssExportJobId')]"
+      },
+      {
+        "runbookName": "[variables('argDisksExportsRunbookName')]",
+        "isOneToMany": false,
+        "containerName": "argdiskexports",
+        "variableName": "AzureOptimization_ARGDiskContainer",
+        "variableDescription": "The Storage Account container where Azure Resource Graph Managed Disks exports are dumped to",
+        "ingestSchedule": "AzureOptimization_IngestARGDisksDaily",
+        "ingestDescription": "Daily Azure Resource Graph Managed Disks ingests",
+        "ingestTimeOffset": "PT1H30M",
+        "ingestFrequency": "Day",
+        "ingestJobId": "[parameters('argDiskIngestJobId')]",
+        "exportSchedule": "[variables('argExportsScheduleName')]",
+        "exportJobId": "[parameters('argDiskExportJobId')]"
+      },
+      {
+        "runbookName": "[variables('argVhdExportsRunbookName')]",
+        "isOneToMany": false,
+        "containerName": "argvhdexports",
+        "variableName": "AzureOptimization_ARGVhdContainer",
+        "variableDescription": "The Storage Account container where Azure Resource Graph Unmanaged Disks exports are dumped to",
+        "ingestSchedule": "AzureOptimization_IngestARGVHDsDaily",
+        "ingestDescription": "Daily Azure Resource Graph Unmanaged Disks ingests",
+        "ingestTimeOffset": "PT1H30M",
+        "ingestFrequency": "Day",
+        "ingestJobId": "[parameters('argVhdIngestJobId')]",
+        "exportSchedule": "[variables('argExportsScheduleName')]",
+        "exportJobId": "[parameters('argVhdExportJobId')]"
+      },
+      {
+        "runbookName": "[variables('argAvailSetExportsRunbookName')]",
+        "isOneToMany": false,
+        "containerName": "argavailsetexports",
+        "variableName": "AzureOptimization_ARGAvailabilitySetContainer",
+        "variableDescription": "The Storage Account container where Azure Resource Graph Availability Set exports are dumped to",
+        "ingestSchedule": "AzureOptimization_IngestARGAvailSetsDaily",
+        "ingestDescription": "Daily Azure Resource Graph Availability Sets ingests",
+        "ingestTimeOffset": "PT1H31M",
+        "ingestFrequency": "Day",
+        "ingestJobId": "[parameters('argAvailSetIngestJobId')]",
+        "exportSchedule": "[variables('argExportsScheduleName')]",
+        "exportJobId": "[parameters('argAvailSetExportJobId')]"
+      },
+      {
+        "runbookName": "[variables('consumptionExportsRunbookName')]",
+        "isOneToMany": false,
+        "containerName": "consumptionexports",
+        "variableName": "AzureOptimization_ConsumptionContainer",
+        "variableDescription": "The Storage Account container where Azure Consumption exports are dumped to",
+        "ingestSchedule": "AzureOptimization_IngestConsumptionDaily",
+        "ingestDescription": "Daily Azure Consumption ingests",
+        "ingestTimeOffset": "PT2H",
+        "ingestFrequency": "Day",
+        "ingestJobId": "[parameters('consumptionIngestJobId')]",
+        "exportSchedule": "[variables('consumptionExportsScheduleName')]",
+        "exportJobId": "[parameters('consumptionExportJobId')]"
+      },
+      {
+        "runbookName": "[variables('aadObjectsExportsRunbookName')]",
+        "isOneToMany": false,
+        "containerName": "aadobjectsexports",
+        "variableName": "AzureOptimization_AADObjectsContainer",
+        "variableDescription": "The Storage Account container where Microsoft Entra Objects exports are dumped to",
+        "ingestSchedule": "AzureOptimization_IngestAADObjectsDaily",
+        "ingestDescription": "Daily Microsoft Entra Objects ingests",
+        "ingestTimeOffset": "PT2H",
+        "ingestFrequency": "Day",
+        "ingestJobId": "[parameters('aadObjectsIngestJobId')]",
+        "exportSchedule": "[variables('aadObjectsExportsScheduleName')]",
+        "exportJobId": "[parameters('aadObjectsExportJobId')]"
+      },
+      {
+        "runbookName": "[variables('argLoadBalancersExportsRunbookName')]",
+        "isOneToMany": false,
+        "containerName": "arglbexports",
+        "variableName": "AzureOptimization_ARGLoadBalancerContainer",
+        "variableDescription": "The Storage Account container where Azure Resource Graph Load Balancer exports are dumped to",
+        "ingestSchedule": "AzureOptimization_IngestARGLoadBalancersDaily",
+        "ingestDescription": "Daily Azure Resource Graph Load Balancers ingests",
+        "ingestTimeOffset": "PT1H31M",
+        "ingestFrequency": "Day",
+        "ingestJobId": "[parameters('argLoadBalancersIngestJobId')]",
+        "exportSchedule": "[variables('argExportsScheduleName')]",
+        "exportJobId": "[parameters('argLoadBalancersExportJobId')]"
+      },
+      {
+        "runbookName": "[variables('argAppGWsExportsRunbookName')]",
+        "isOneToMany": false,
+        "containerName": "argappgwexports",
+        "variableName": "AzureOptimization_ARGAppGatewayContainer",
+        "variableDescription": "The Storage Account container where Azure Resource Graph Application Gateway exports are dumped to",
+        "ingestSchedule": "AzureOptimization_IngestARGAppGWsDaily",
+        "ingestDescription": "Daily Azure Resource Graph Application Gateways ingests",
+        "ingestTimeOffset": "PT1H31M",
+        "ingestFrequency": "Day",
+        "ingestJobId": "[parameters('argAppGWsIngestJobId')]",
+        "exportSchedule": "[variables('argExportsScheduleName')]",
+        "exportJobId": "[parameters('argAppGWsExportJobId')]"
+      },
+      {
+        "runbookName": "[variables('argResContainersExportsRunbookName')]",
+        "isOneToMany": false,
+        "containerName": "argrescontainersexports",
+        "variableName": "AzureOptimization_ARGResourceContainersContainer",
+        "variableDescription": "The Storage Account container where Azure Resource Graph Resource Containers exports are dumped to",
+        "ingestSchedule": "AzureOptimization_IngestARGResourceContainersDaily",
+        "ingestDescription": "Daily Azure Resource Graph Resource Containers ingests",
+        "ingestTimeOffset": "PT1H32M",
+        "ingestFrequency": "Day",
+        "ingestJobId": "[parameters('argResContainersIngestJobId')]",
+        "exportSchedule": "[variables('argExportsScheduleName')]",
+        "exportJobId": "[parameters('argResContainersExportJobId')]"
+      },
+      {
+        "runbookName": "[variables('rbacExportsRunbookName')]",
+        "isOneToMany": false,
+        "containerName": "rbacexports",
+        "variableName": "AzureOptimization_RBACAssignmentsContainer",
+        "variableDescription": "The Storage Account container where RBAC Assignments exports are dumped to",
+        "ingestSchedule": "AzureOptimization_IngestRBACDaily",
+        "ingestDescription": "Daily Azure RBAC ingests",
+        "ingestTimeOffset": "PT1H32M",
+        "ingestFrequency": "Day",
+        "ingestJobId": "[parameters('rbacIngestJobId')]",
+        "exportSchedule": "[variables('rbacExportsScheduleName')]",
+        "exportJobId": "[parameters('rbacExportJobId')]"
+      },
+      {
+        "runbookName": "[variables('argNICExportsRunbookName')]",
+        "isOneToMany": false,
+        "containerName": "argnicexports",
+        "variableName": "AzureOptimization_ARGNICContainer",
+        "variableDescription": "The Storage Account container where Azure Resource Graph NIC exports are dumped to",
+        "ingestSchedule": "AzureOptimization_IngestARGNICsDaily",
+        "ingestDescription": "Daily Azure Resource Graph NIC ingests",
+        "ingestTimeOffset": "PT1H32M",
+        "ingestFrequency": "Day",
+        "ingestJobId": "[parameters('argNICIngestJobId')]",
+        "exportSchedule": "[variables('argExportsScheduleName')]",
+        "exportJobId": "[parameters('argNICExportJobId')]"
+      },
+      {
+        "runbookName": "[variables('argNSGExportsRunbookName')]",
+        "isOneToMany": false,
+        "containerName": "argnsgexports",
+        "variableName": "AzureOptimization_ARGNSGContainer",
+        "variableDescription": "The Storage Account container where Azure Resource Graph NSG exports are dumped to",
+        "ingestSchedule": "AzureOptimization_IngestARGNSGsDaily",
+        "ingestDescription": "Daily Azure Resource Graph NSG ingests",
+        "ingestTimeOffset": "PT1H32M",
+        "ingestFrequency": "Day",
+        "ingestJobId": "[parameters('argNSGIngestJobId')]",
+        "exportSchedule": "[variables('argExportsScheduleName')]",
+        "exportJobId": "[parameters('argNSGExportJobId')]"
+      },
+      {
+        "runbookName": "[variables('argVNetExportsRunbookName')]",
+        "isOneToMany": false,
+        "containerName": "argvnetexports",
+        "variableName": "AzureOptimization_ARGVNetContainer",
+        "variableDescription": "The Storage Account container where Azure Resource Graph VNet exports are dumped to",
+        "ingestSchedule": "AzureOptimization_IngestARGVNetsDaily",
+        "ingestDescription": "Daily Azure Resource Graph Virtual Network ingests",
+        "ingestTimeOffset": "PT1H33M",
+        "ingestFrequency": "Day",
+        "ingestJobId": "[parameters('argVNetIngestJobId')]",
+        "exportSchedule": "[variables('argExportsScheduleName')]",
+        "exportJobId": "[parameters('argVNetExportJobId')]"
+      },
+      {
+        "runbookName": "[variables('argPublicIpExportsRunbookName')]",
+        "isOneToMany": false,
+        "containerName": "argpublicipexports",
+        "variableName": "AzureOptimization_ARGPublicIpContainer",
+        "variableDescription": "The Storage Account container where Azure Resource Graph Public IP exports are dumped to",
+        "ingestSchedule": "AzureOptimization_IngestARGPublicIPsDaily",
+        "ingestDescription": "Daily Azure Resource Graph Public IP ingests",
+        "ingestTimeOffset": "PT1H33M",
+        "ingestFrequency": "Day",
+        "ingestJobId": "[parameters('argPublicIPIngestJobId')]",
+        "exportSchedule": "[variables('argExportsScheduleName')]",
+        "exportJobId": "[parameters('argPublicIPExportJobId')]"
+      },
+      {
+        "runbookName": "[variables('argSqlDbExportsRunbookName')]",
+        "isOneToMany": false,
+        "containerName": "argsqldbexports",
+        "variableName": "AzureOptimization_ARGSqlDatabaseContainer",
+        "variableDescription": "The Storage Account container where Azure Resource Graph SQL DB exports are dumped to",
+        "ingestSchedule": "AzureOptimization_IngestARGSqlDbDaily",
+        "ingestDescription": "Daily Azure Resource Graph SQL DB ingests",
+        "ingestTimeOffset": "PT1H33M",
+        "ingestFrequency": "Day",
+        "ingestJobId": "[parameters('argSqlDbIngestJobId')]",
+        "exportSchedule": "[variables('argExportsScheduleName')]",
+        "exportJobId": "[parameters('argSqlDbExportJobId')]"
+      },
+      {
+        "runbookName": "[variables('policyStateExportsRunbookName')]",
+        "isOneToMany": false,
+        "containerName": "policystateexports",
+        "variableName": "AzureOptimization_PolicyStatesContainer",
+        "variableDescription": "The Storage Account container where Azure Policy State exports are dumped to",
+        "ingestSchedule": "AzureOptimization_IngestPolicyStateDaily",
+        "ingestDescription": "Daily Azure Policy State ingests",
+        "ingestTimeOffset": "PT1H33M",
+        "ingestFrequency": "Day",
+        "ingestJobId": "[parameters('policyStateIngestJobId')]",
+        "exportSchedule": "[variables('policyStateExportsScheduleName')]",
+        "exportJobId": "[parameters('policyStateExportJobId')]"
+      },
+      {
+        "runbookName": "[variables('monitorExportsRunbookName')]",
+        "isOneToMany": true,
+        "containerName": "azmonitorexports",
+        "variableName": "AzureOptimization_AzMonitorContainer",
+        "variableDescription": "The Storage Account container where Azure Monitor metrics exports are dumped to",
+        "ingestSchedule": "AzureOptimization_IngestAzMonitorMetricsHourly",
+        "ingestDescription": "Hourly Azure Monitor metrics ingests",
+        "ingestTimeOffset": "PT2H",
+        "ingestFrequency": "Hour",
+        "ingestJobId": "[parameters('monitorIngestJobId')]",
+        "exportSchedule": null,
+        "exportJobId": "dummy"
+      },
+      {
+        "runbookName": "[variables('argAppServicePlanExportsRunbookName')]",
+        "isOneToMany": false,
+        "containerName": "argappserviceplanexports",
+        "variableName": "AzureOptimization_ARGAppServicePlanContainer",
+        "variableDescription": "The Storage Account container where Azure Resource Graph App Service Plan exports are dumped to",
+        "ingestSchedule": "AzureOptimization_IngestARGAppServicePlanDaily",
+        "ingestDescription": "Daily Azure Resource Graph App Service Plan ingests",
+        "ingestTimeOffset": "PT1H34M",
+        "ingestFrequency": "Day",
+        "ingestJobId": "[parameters('argAppServicePlanIngestJobId')]",
+        "exportSchedule": "[variables('argExportsScheduleName')]",
+        "exportJobId": "[parameters('argAppServicePlanExportJobId')]"
+      },
+      {
+        "runbookName": "[variables('priceSheetExportsRunbookName')]",
+        "isOneToMany": false,
+        "containerName": "pricesheetexports",
+        "variableName": "AzureOptimization_PriceSheetContainer",
+        "variableDescription": "The Storage Account container where Pricesheet exports are dumped to",
+        "ingestSchedule": "AzureOptimization_IngestPricesheetWeekly",
+        "ingestDescription": "Weekly Pricesheet ingests",
+        "ingestTimeOffset": "PT2H",
+        "ingestFrequency": "Week",
+        "ingestJobId": "[parameters('pricesheetIngestJobId')]",
+        "exportSchedule": "[variables('priceExportsScheduleName')]",
+        "exportJobId": "[parameters('pricesheetExportJobId')]"
+      },
+      {
+        "runbookName": "[variables('reservationsPriceExportsRunbookName')]",
+        "isOneToMany": false,
+        "containerName": "reservationspriceexports",
+        "variableName": "AzureOptimization_ReservationsPriceContainer",
+        "variableDescription": "The Storage Account container where Reservations Prices exports are dumped to",
+        "ingestSchedule": "AzureOptimization_IngestReservationsPriceWeekly",
+        "ingestDescription": "Weekly Reservations Prices ingests",
+        "ingestTimeOffset": "PT2H",
+        "ingestFrequency": "Week",
+        "ingestJobId": "[parameters('reservationPricesIngestJobId')]",
+        "exportSchedule": "[variables('priceExportsScheduleName')]",
+        "exportJobId": "[parameters('reservationPricesExportJobId')]"
+      },
+      {
+        "runbookName": "[variables('reservationsExportsRunbookName')]",
+        "isOneToMany": false,
+        "containerName": "reservationsexports",
+        "variableName": "AzureOptimization_ReservationsContainer",
+        "variableDescription": "The Storage Account container where Reservations Usage exports are dumped to",
+        "ingestSchedule": "AzureOptimization_IngestReservationsUsageDaily",
+        "ingestDescription": "Daily Reservations Usage ingests",
+        "ingestTimeOffset": "PT2H30M",
+        "ingestFrequency": "Day",
+        "ingestJobId": "[parameters('reservationUsageIngestJobId')]",
+        "exportSchedule": "[variables('reservationsUsageExportsScheduleName')]",
+        "exportJobId": "[parameters('reservationUsageExportJobId')]"
+      },
+      {
+        "runbookName": "[variables('savingsPlansExportsRunbookName')]",
+        "isOneToMany": false,
+        "containerName": "savingsplansexports",
+        "variableName": "AzureOptimization_SavingsPlansContainer",
+        "variableDescription": "The Storage Account container where Savings Plans Usage exports are dumped to",
+        "ingestSchedule": "AzureOptimization_IngestSavingsPlansUsageDaily",
+        "ingestDescription": "Daily Savings Plans Usage ingests",
+        "ingestTimeOffset": "PT2H35M",
+        "ingestFrequency": "Day",
+        "ingestJobId": "[parameters('savingsPlansUsageIngestJobId')]",
+        "exportSchedule": "[variables('savingsPlansUsageExportsScheduleName')]",
+        "exportJobId": "[parameters('savingsPlansUsageExportJobId')]"
+      },
+      {
+        "runbookName": "[variables('vmOffHoursExportsRunbookName')]",
+        "isOneToMany": false,
+        "containerName": "vmoffhoursexports",
+        "variableName": "AzureOptimization_VMOffHoursContainer",
+        "variableDescription": "The Storage Account container where VM off-hours underutilization exports are dumped to",
+        "ingestSchedule": "AzureOptimization_IngestVMOffHoursDaily",
+        "ingestDescription": "Daily VM off-hours underutilization ingests",
+        "ingestTimeOffset": "PT2H08M",
+        "ingestFrequency": "Day",
+        "ingestJobId": "[parameters('vmOffHoursIngestJobId')]",
+        "exportSchedule": "[variables('vmOffHoursExportsScheduleName')]",
+        "exportJobId": "[parameters('vmOffHoursExportJobId')]"
+      },
+      {
+        "runbookName": "[variables('awsEC2ExportsRunbookName')]",
+        "isOneToMany": false,
+        "containerName": "awsec2exports",
+        "variableName": "AzureOptimization_AWSEC2Container",
+        "variableDescription": "The Storage Account container where AWS EC2 underutilized instances exports are dumped to",
+        "ingestSchedule": "AzureOptimization_IngestAWSEC2Daily",
+        "ingestDescription": "Daily AWS EC2 underutilized instances ingests",
+        "ingestTimeOffset": "PT3H30M",
+        "ingestFrequency": "Day",
+        "ingestJobId": "[parameters('awsEC2IngestJobId')]",
+        "exportSchedule": "[variables('awsEC2ExportsScheduleName')]",
+        "exportJobId": "[parameters('awsEC2ExportJobId')]"
+      },
+      {
+        "runbookName": "[variables('awsEBSUnattachedExportsRunbookName')]",
+        "isOneToMany": false,
+        "containerName": "awsebsunattachedexports",
+        "variableName": "AzureOptimization_AWSEBSUnattachedContainer",
+        "variableDescription": "The Storage Account container where AWS unattached EBS volumes exports are dumped to",
+        "ingestSchedule": "AzureOptimization_IngestAWSEBSUnattachedDaily",
+        "ingestDescription": "Daily AWS unattached EBS volumes ingests",
+        "ingestTimeOffset": "PT3H31M",
+        "ingestFrequency": "Day",
+        "ingestJobId": "[parameters('awsEBSUnattachedIngestJobId')]",
+        "exportSchedule": "[variables('awsEBSUnattachedExportsScheduleName')]",
+        "exportJobId": "[parameters('awsEBSUnattachedExportJobId')]"
+      },
+      {
+        "runbookName": "[variables('awsEBSUnderutilizedExportsRunbookName')]",
+        "isOneToMany": false,
+        "containerName": "awsebsunderutilizedexports",
+        "variableName": "AzureOptimization_AWSEBSUnderutilizedContainer",
+        "variableDescription": "The Storage Account container where AWS underutilized EBS volumes exports are dumped to",
+        "ingestSchedule": "AzureOptimization_IngestAWSEBSUnderutilizedDaily",
+        "ingestDescription": "Daily AWS underutilized EBS volumes ingests",
+        "ingestTimeOffset": "PT3H32M",
+        "ingestFrequency": "Day",
+        "ingestJobId": "[parameters('awsEBSUnderutilizedIngestJobId')]",
+        "exportSchedule": "[variables('awsEBSUnderutilizedExportsScheduleName')]",
+        "exportJobId": "[parameters('awsEBSUnderutilizedExportJobId')]"
+      },
+      {
+        "runbookName": "[variables('awsEIPExportsRunbookName')]",
+        "isOneToMany": false,
+        "containerName": "awseipexports",
+        "variableName": "AzureOptimization_AWSEIPContainer",
+        "variableDescription": "The Storage Account container where AWS unattached EIPs exports are dumped to",
+        "ingestSchedule": "AzureOptimization_IngestAWSEIPDaily",
+        "ingestDescription": "Daily AWS unattached EIPs ingests",
+        "ingestTimeOffset": "PT3H33M",
+        "ingestFrequency": "Day",
+        "ingestJobId": "[parameters('awsEIPIngestJobId')]",
+        "exportSchedule": "[variables('awsEIPExportsScheduleName')]",
+        "exportJobId": "[parameters('awsEIPExportJobId')]"
+      },
+      {
+        "runbookName": "[variables('awsRDSExportsRunbookName')]",
+        "isOneToMany": false,
+        "containerName": "awsrdsexports",
+        "variableName": "AzureOptimization_AWSRDSContainer",
+        "variableDescription": "The Storage Account container where AWS underutilized RDS instances exports are dumped to",
+        "ingestSchedule": "AzureOptimization_IngestAWSRDSDaily",
+        "ingestDescription": "Daily AWS underutilized RDS instances ingests",
+        "ingestTimeOffset": "PT3H34M",
+        "ingestFrequency": "Day",
+        "ingestJobId": "[parameters('awsRDSIngestJobId')]",
+        "exportSchedule": "[variables('awsRDSExportsScheduleName')]",
+        "exportJobId": "[parameters('awsRDSExportJobId')]"
+      },
+      {
+        "runbookName": "[variables('awsLBExportsRunbookName')]",
+        "isOneToMany": false,
+        "containerName": "awslbexports",
+        "variableName": "AzureOptimization_AWSLBContainer",
+        "variableDescription": "The Storage Account container where AWS underutilized Load Balancers exports are dumped to",
+        "ingestSchedule": "AzureOptimization_IngestAWSLBDaily",
+        "ingestDescription": "Daily AWS underutilized Load Balancers ingests",
+        "ingestTimeOffset": "PT3H35M",
+        "ingestFrequency": "Day",
+        "ingestJobId": "[parameters('awsLBIngestJobId')]",
+        "exportSchedule": "[variables('awsLBExportsScheduleName')]",
+        "exportJobId": "[parameters('awsLBExportJobId')]"
+      },
+      {
+        "runbookName": "[variables('awsLambdaExportsRunbookName')]",
+        "isOneToMany": false,
+        "containerName": "awslambdaexports",
+        "variableName": "AzureOptimization_AWSLambdaContainer",
+        "variableDescription": "The Storage Account container where AWS idle Lambda functions exports are dumped to",
+        "ingestSchedule": "AzureOptimization_IngestAWSLambdaDaily",
+        "ingestDescription": "Daily AWS idle Lambda functions ingests",
+        "ingestTimeOffset": "PT3H36M",
+        "ingestFrequency": "Day",
+        "ingestJobId": "[parameters('awsLambdaIngestJobId')]",
+        "exportSchedule": "[variables('awsLambdaExportsScheduleName')]",
+        "exportJobId": "[parameters('awsLambdaExportJobId')]"
+      },
+      {
+        "runbookName": "[variables('awsECSExportsRunbookName')]",
+        "isOneToMany": false,
+        "containerName": "awsecsexports",
+        "variableName": "AzureOptimization_AWSECSContainer",
+        "variableDescription": "The Storage Account container where AWS idle ECS services exports are dumped to",
+        "ingestSchedule": "AzureOptimization_IngestAWSECSDaily",
+        "ingestDescription": "Daily AWS idle ECS services ingests",
+        "ingestTimeOffset": "PT3H37M",
+        "ingestFrequency": "Day",
+        "ingestJobId": "[parameters('awsECSIngestJobId')]",
+        "exportSchedule": "[variables('awsECSExportsScheduleName')]",
+        "exportJobId": "[parameters('awsECSExportJobId')]"
+      },
+      {
+        "runbookName": "[variables('awsElasticBeanstalkExportsRunbookName')]",
+        "isOneToMany": false,
+        "containerName": "awselasticbeanstalkexports",
+        "variableName": "AzureOptimization_AWSElasticBeanstalkContainer",
+        "variableDescription": "The Storage Account container where AWS idle Elastic Beanstalk environments exports are dumped to",
+        "ingestSchedule": "AzureOptimization_IngestAWSElasticBeanstalkDaily",
+        "ingestDescription": "Daily AWS idle Elastic Beanstalk environments ingests",
+        "ingestTimeOffset": "PT3H38M",
+        "ingestFrequency": "Day",
+        "ingestJobId": "[parameters('awsElasticBeanstalkIngestJobId')]",
+        "exportSchedule": "[variables('awsElasticBeanstalkExportsScheduleName')]",
+        "exportJobId": "[parameters('awsElasticBeanstalkExportJobId')]"
+      },
+      {
+        "runbookName": "[variables('awsBucketsExportsRunbookName')]",
+        "isOneToMany": false,
+        "containerName": "awsbucketsexports",
+        "variableName": "AzureOptimization_AWSBucketsContainer",
+        "variableDescription": "The Storage Account container where AWS buckets without retention exports are dumped to",
+        "ingestSchedule": "AzureOptimization_IngestAWSBucketsDaily",
+        "ingestDescription": "Daily AWS buckets without retention ingests",
+        "ingestTimeOffset": "PT3H39M",
+        "ingestFrequency": "Day",
+        "ingestJobId": "[parameters('awsBucketsIngestJobId')]",
+        "exportSchedule": "[variables('awsBucketsExportsScheduleName')]",
+        "exportJobId": "[parameters('awsBucketsExportJobId')]"
+      },
+      {
+        "runbookName": "[variables('gcpVMsExportsRunbookName')]",
+        "isOneToMany": false,
+        "containerName": "gcpvmsexports",
+        "variableName": "AzureOptimization_GCPVMsContainer",
+        "variableDescription": "The Storage Account container where GCP underutilized VMs exports are dumped to",
+        "ingestSchedule": "AzureOptimization_IngestGCPVMsDaily",
+        "ingestDescription": "Daily GCP underutilized VMs ingests",
+        "ingestTimeOffset": "PT4H30M",
+        "ingestFrequency": "Day",
+        "ingestJobId": "[parameters('gcpVMsIngestJobId')]",
+        "exportSchedule": "[variables('gcpVMsExportsScheduleName')]",
+        "exportJobId": "[parameters('gcpVMsExportJobId')]"
+      },
+      {
+        "runbookName": "[variables('gcpVMsOffHoursExportsRunbookName')]",
+        "isOneToMany": false,
+        "containerName": "gcpvmsoffhoursexports",
+        "variableName": "AzureOptimization_GCPVMsOffHoursContainer",
+        "variableDescription": "The Storage Account container where GCP underutilized VMs off-hours exports are dumped to",
+        "ingestSchedule": "AzureOptimization_IngestGCPVMsOffHoursDaily",
+        "ingestDescription": "Daily GCP underutilized VMs off-hours ingests",
+        "ingestTimeOffset": "PT4H31M",
+        "ingestFrequency": "Day",
+        "ingestJobId": "[parameters('gcpVMsOffHoursIngestJobId')]",
+        "exportSchedule": "[variables('gcpVMsOffHoursExportsScheduleName')]",
+        "exportJobId": "[parameters('gcpVMsOffHoursExportJobId')]"
+      },
+      {
+        "runbookName": "[variables('gcpIdleDisksExportsRunbookName')]",
+        "isOneToMany": false,
+        "containerName": "gcpidledisksexports",
+        "variableName": "AzureOptimization_GCPIdleDisksContainer",
+        "variableDescription": "The Storage Account container where GCP idle disks exports are dumped to",
+        "ingestSchedule": "AzureOptimization_IngestGCPIdleDisksDaily",
+        "ingestDescription": "Daily GCP idle disks ingests",
+        "ingestTimeOffset": "PT4H32M",
+        "ingestFrequency": "Day",
+        "ingestJobId": "[parameters('gcpIdleDisksIngestJobId')]",
+        "exportSchedule": "[variables('gcpIdleDisksExportsScheduleName')]",
+        "exportJobId": "[parameters('gcpIdleDisksExportJobId')]"
+      },
+      {
+        "runbookName": "[variables('gcpUnderutilizedDisksExportsRunbookName')]",
+        "isOneToMany": false,
+        "containerName": "gcpunderutilizeddisksexports",
+        "variableName": "AzureOptimization_GCPUnderutilizedDisksContainer",
+        "variableDescription": "The Storage Account container where GCP underutilized disks exports are dumped to",
+        "ingestSchedule": "AzureOptimization_IngestGCPUnderutilizedDisksDaily",
+        "ingestDescription": "Daily GCP underutilized disks ingests",
+        "ingestTimeOffset": "PT4H33M",
+        "ingestFrequency": "Day",
+        "ingestJobId": "[parameters('gcpUnderutilizedDisksIngestJobId')]",
+        "exportSchedule": "[variables('gcpUnderutilizedDisksExportsScheduleName')]",
+        "exportJobId": "[parameters('gcpUnderutilizedDisksExportJobId')]"
+      },
+      {
+        "runbookName": "[variables('gcpUnmanagedDisksExportsRunbookName')]",
+        "isOneToMany": false,
+        "containerName": "gcpunmanageddisksexports",
+        "variableName": "AzureOptimization_GCPUnmanagedDisksContainer",
+        "variableDescription": "The Storage Account container where GCP unmanaged disks exports are dumped to",
+        "ingestSchedule": "AzureOptimization_IngestGCPUnmanagedDisksDaily",
+        "ingestDescription": "Daily GCP unmanaged disks ingests",
+        "ingestTimeOffset": "PT4H34M",
+        "ingestFrequency": "Day",
+        "ingestJobId": "[parameters('gcpUnmanagedDisksIngestJobId')]",
+        "exportSchedule": "[variables('gcpUnmanagedDisksExportsScheduleName')]",
+        "exportJobId": "[parameters('gcpUnmanagedDisksExportJobId')]"
+      },
+      {
+        "runbookName": "[variables('gcpIdleServicesExportsRunbookName')]",
+        "isOneToMany": false,
+        "containerName": "gcpidleservicesexports",
+        "variableName": "AzureOptimization_GCPIdleServicesContainer",
+        "variableDescription": "The Storage Account container where GCP idle services exports are dumped to",
+        "ingestSchedule": "AzureOptimization_IngestGCPIdleServicesDaily",
+        "ingestDescription": "Daily GCP idle services ingests",
+        "ingestTimeOffset": "PT4H35M",
+        "ingestFrequency": "Day",
+        "ingestJobId": "[parameters('gcpIdleServicesIngestJobId')]",
+        "exportSchedule": "[variables('gcpIdleServicesExportsScheduleName')]",
+        "exportJobId": "[parameters('gcpIdleServicesExportJobId')]"
+      },
+      {
+        "runbookName": "[variables('gcpUnattachedIPsExportsRunbookName')]",
+        "isOneToMany": false,
+        "containerName": "gcpunattachedipsexports",
+        "variableName": "AzureOptimization_GCPUnattachedIPsContainer",
+        "variableDescription": "The Storage Account container where GCP unattached IPs exports are dumped to",
+        "ingestSchedule": "AzureOptimization_IngestGCPUnattachedIPsDaily",
+        "ingestDescription": "Daily GCP unattached IPs ingests",
+        "ingestTimeOffset": "PT4H36M",
+        "ingestFrequency": "Day",
+        "ingestJobId": "[parameters('gcpUnattachedIPsIngestJobId')]",
+        "exportSchedule": "[variables('gcpUnattachedIPsExportsScheduleName')]",
+        "exportJobId": "[parameters('gcpUnattachedIPsExportJobId')]"
+      },
+      {
+        "runbookName": "[variables('gcpSQLExportsRunbookName')]",
+        "isOneToMany": false,
+        "containerName": "gcpsqlexports",
+        "variableName": "AzureOptimization_GCPSQLContainer",
+        "variableDescription": "The Storage Account container where GCP underutilized Cloud SQL exports are dumped to",
+        "ingestSchedule": "AzureOptimization_IngestGCPSQLDaily",
+        "ingestDescription": "Daily GCP underutilized Cloud SQL ingests",
+        "ingestTimeOffset": "PT4H37M",
+        "ingestFrequency": "Day",
+        "ingestJobId": "[parameters('gcpSQLIngestJobId')]",
+        "exportSchedule": "[variables('gcpSQLExportsScheduleName')]",
+        "exportJobId": "[parameters('gcpSQLExportJobId')]"
+      },
+      {
+        "runbookName": "[variables('gcpBucketsExportsRunbookName')]",
+        "isOneToMany": false,
+        "containerName": "gcpbucketsexports",
+        "variableName": "AzureOptimization_GCPBucketsContainer",
+        "variableDescription": "The Storage Account container where GCP buckets without retention exports are dumped to",
+        "ingestSchedule": "AzureOptimization_IngestGCPBucketsDaily",
+        "ingestDescription": "Daily GCP buckets without retention ingests",
+        "ingestTimeOffset": "PT4H38M",
+        "ingestFrequency": "Day",
+        "ingestJobId": "[parameters('gcpBucketsIngestJobId')]",
+        "exportSchedule": "[variables('gcpBucketsExportsScheduleName')]",
+        "exportJobId": "[parameters('gcpBucketsExportJobId')]"
+      },
+      {
+        "runbookName": "[variables('gcpLBExportsRunbookName')]",
+        "isOneToMany": false,
+        "containerName": "gcplbexports",
+        "variableName": "AzureOptimization_GCPLBContainer",
+        "variableDescription": "The Storage Account container where GCP unused Load Balancers exports are dumped to",
+        "ingestSchedule": "AzureOptimization_IngestGCPLBDaily",
+        "ingestDescription": "Daily GCP unused Load Balancers ingests",
+        "ingestTimeOffset": "PT4H39M",
+        "ingestFrequency": "Day",
+        "ingestJobId": "[parameters('gcpLBIngestJobId')]",
+        "exportSchedule": "[variables('gcpLBExportsScheduleName')]",
+        "exportJobId": "[parameters('gcpLBExportJobId')]"
+      },
+      {
+        "runbookName": "[variables('gcpFOCUSIngestRunbookName')]",
+        "isOneToMany": true,
+        "containerName": "gcpfocusexports",
+        "variableName": "AzureOptimization_GCPFOCUSContainer",
+        "variableDescription": "The Storage Account container where GCP FOCUS data exports are dumped to",
+        "ingestSchedule": "[variables('gcpFOCUSIngestScheduleName')]",
+        "ingestDescription": "Daily GCP FOCUS ingests",
+        "ingestTimeOffset": "PT4H40M",
+        "ingestFrequency": "Day",
+        "ingestJobId": "[parameters('gcpFOCUSIngestJobId')]",
+        "exportSchedule": null,
+        "exportJobId": "dummy"
+      }
+    ],
+    "csvParameterizedExports": [
+      {
+        "runbookName": "[variables('monitorExportsRunbookName')]",
+        "exportSchedule": "[variables('monitorVmssCpuMaxExportsScheduleName')]",
+        "exportJobId": "[parameters('monitorVmssCpuMaxExportJobId')]",
+        "parameters": {
+          "ResourceType": "microsoft.compute/virtualmachinescalesets",
+          "TimeSpan": "01:00:00",
+          "aggregationType": "Maximum",
+          "MetricNames": "Percentage CPU",
+          "TimeGrain": "01:00:00"
+        }
+      },
+      {
+        "runbookName": "[variables('monitorExportsRunbookName')]",
+        "exportSchedule": "[variables('monitorVmssCpuAvgExportsScheduleName')]",
+        "exportJobId": "[parameters('monitorVmssCpuAvgExportJobId')]",
+        "parameters": {
+          "ResourceType": "microsoft.compute/virtualmachinescalesets",
+          "TimeSpan": "01:00:00",
+          "aggregationType": "Average",
+          "MetricNames": "Percentage CPU",
+          "TimeGrain": "01:00:00"
+        }
+      },
+      {
+        "runbookName": "[variables('monitorExportsRunbookName')]",
+        "exportSchedule": "[variables('monitorVmssMemoryMinExportsScheduleName')]",
+        "exportJobId": "[parameters('monitorVmssMemoryMinExportJobId')]",
+        "parameters": {
+          "ResourceType": "microsoft.compute/virtualmachinescalesets",
+          "TimeSpan": "01:00:00",
+          "aggregationType": "Minimum",
+          "MetricNames": "Available Memory Bytes",
+          "TimeGrain": "01:00:00"
+        }
+      },
+      {
+        "runbookName": "[variables('monitorExportsRunbookName')]",
+        "exportSchedule": "[variables('monitorSqlDbDtuMaxExportsScheduleName')]",
+        "exportJobId": "[parameters('monitorSqlDbDtuMaxExportJobId')]",
+        "parameters": {
+          "ResourceType": "microsoft.sql/servers/databases",
+          "ARGFilter": "sku.tier in ('Standard','Premium')",
+          "TimeSpan": "01:00:00",
+          "aggregationType": "Maximum",
+          "MetricNames": "dtu_consumption_percent",
+          "TimeGrain": "01:00:00"
+        }
+      },
+      {
+        "runbookName": "[variables('monitorExportsRunbookName')]",
+        "exportSchedule": "[variables('monitorSqlDbDtuAvgExportsScheduleName')]",
+        "exportJobId": "[parameters('monitorSqlDbDtuAvgExportJobId')]",
+        "parameters": {
+          "ResourceType": "microsoft.sql/servers/databases",
+          "ARGFilter": "sku.tier in ('Standard','Premium')",
+          "TimeSpan": "01:00:00",
+          "aggregationType": "Average",
+          "AggregationOfType": "Maximum",
+          "MetricNames": "dtu_consumption_percent",
+          "TimeGrain": "00:01:00"
+        }
+      },
+      {
+        "runbookName": "[variables('monitorExportsRunbookName')]",
+        "exportSchedule": "[variables('monitorAppServiceCpuMaxExportsScheduleName')]",
+        "exportJobId": "[parameters('monitorAppServiceCpuMaxExportJobId')]",
+        "parameters": {
+          "ResourceType": "microsoft.web/serverfarms",
+          "ARGFilter": "properties.computeMode == 'Dedicated' and sku.tier != 'Free'",
+          "TimeSpan": "01:00:00",
+          "aggregationType": "Maximum",
+          "MetricNames": "CpuPercentage",
+          "TimeGrain": "01:00:00"
+        }
+      },
+      {
+        "runbookName": "[variables('monitorExportsRunbookName')]",
+        "exportSchedule": "[variables('monitorAppServiceCpuAvgExportsScheduleName')]",
+        "exportJobId": "[parameters('monitorAppServiceCpuAvgExportJobId')]",
+        "parameters": {
+          "ResourceType": "microsoft.web/serverfarms",
+          "ARGFilter": "properties.computeMode == 'Dedicated' and sku.tier != 'Free'",
+          "TimeSpan": "01:00:00",
+          "aggregationType": "Average",
+          "AggregationOfType": "Maximum",
+          "MetricNames": "CpuPercentage",
+          "TimeGrain": "00:01:00"
+        }
+      },
+      {
+        "runbookName": "[variables('monitorExportsRunbookName')]",
+        "exportSchedule": "[variables('monitorAppServiceMemoryMaxExportsScheduleName')]",
+        "exportJobId": "[parameters('monitorAppServiceMemoryMaxExportJobId')]",
+        "parameters": {
+          "ResourceType": "microsoft.web/serverfarms",
+          "ARGFilter": "properties.computeMode == 'Dedicated' and sku.tier != 'Free'",
+          "TimeSpan": "01:00:00",
+          "aggregationType": "Maximum",
+          "MetricNames": "MemoryPercentage",
+          "TimeGrain": "01:00:00"
+        }
+      },
+      {
+        "runbookName": "[variables('monitorExportsRunbookName')]",
+        "exportSchedule": "[variables('monitorAppServiceMemoryAvgExportsScheduleName')]",
+        "exportJobId": "[parameters('monitorAppServiceMemoryAvgExportJobId')]",
+        "parameters": {
+          "ResourceType": "microsoft.web/serverfarms",
+          "ARGFilter": "properties.computeMode == 'Dedicated' and sku.tier != 'Free'",
+          "TimeSpan": "01:00:00",
+          "aggregationType": "Average",
+          "AggregationOfType": "Maximum",
+          "MetricNames": "MemoryPercentage",
+          "TimeGrain": "00:01:00"
+        }
+      },
+      {
+        "runbookName": "[variables('monitorExportsRunbookName')]",
+        "exportSchedule": "[variables('monitorDiskIOPSAvgExportsScheduleName')]",
+        "exportJobId": "[parameters('monitorDiskIOPSAvgExportJobId')]",
+        "parameters": {
+          "ResourceType": "microsoft.compute/disks",
+          "ARGFilter": "sku.name startswith 'Premium_' and properties.diskState =~ 'Attached'",
+          "TimeSpan": "01:00:00",
+          "aggregationType": "Average",
+          "AggregationOfType": "Maximum",
+          "MetricNames": "Composite Disk Read Operations/sec,Composite Disk Write Operations/sec",
+          "TimeGrain": "00:01:00"
+        }
+      },
+      {
+        "runbookName": "[variables('monitorExportsRunbookName')]",
+        "exportSchedule": "[variables('monitorDiskMBPsAvgExportsScheduleName')]",
+        "exportJobId": "[parameters('monitorDiskMBPsAvgExportJobId')]",
+        "parameters": {
+          "ResourceType": "microsoft.compute/disks",
+          "ARGFilter": "sku.name startswith 'Premium_' and properties.diskState =~ 'Attached'",
+          "TimeSpan": "01:00:00",
+          "aggregationType": "Average",
+          "AggregationOfType": "Maximum",
+          "MetricNames": "Composite Disk Read Bytes/sec,Composite Disk Write Bytes/sec",
+          "TimeGrain": "00:01:00"
+        }
+      }
+    ],
+    "unattachedDisksRecommendationsRunbookName": "Recommend-UnattachedDisksToBlobStorage",
+    "advisorCostAugmentedRecommendationsRunbookName": "Recommend-AdvisorCostAugmentedToBlobStorage",
+    "advisorAsIsRecommendationsRunbookName": "Recommend-AdvisorAsIsToBlobStorage",
+    "vmsHARecommendationsRunbookName": "Recommend-VMsHighAvailabilityToBlobStorage",
+    "vmOptimizationsRecommendationsRunbookName": "Recommend-VMOptimizationsToBlobStorage",
+    "aadExpiringCredsRecommendationsRunbookName": "Recommend-AADExpiringCredentialsToBlobStorage",
+    "unusedLBsRecommendationsRunbookName": "Recommend-UnusedLoadBalancersToBlobStorage",
+    "unusedAppGWsRecommendationsRunbookName": "Recommend-UnusedAppGWsToBlobStorage",
+    "armOptimizationsRecommendationsRunbookName": "Recommend-ARMOptimizationsToBlobStorage",
+    "vnetOptimizationsRecommendationsRunbookName": "Recommend-VNetOptimizationsToBlobStorage",
+    "vmssOptimizationsRecommendationsRunbookName": "Recommend-VMSSOptimizationsToBlobStorage",
+    "sqldbOptimizationsRecommendationsRunbookName": "Recommend-SqlDbOptimizationsToBlobStorage",
+    "storageOptimizationsRecommendationsRunbookName": "Recommend-StorageAccountOptimizationsToBlobStorage",
+    "appServiceOptimizationsRecommendationsRunbookName": "Recommend-AppServiceOptimizationsToBlobStorage",
+    "diskOptimizationsRecommendationsRunbookName": "Recommend-DiskOptimizationsToBlobStorage",
+    "cleanUpOlderRecommendationsRunbookName": "CleanUp-OlderRecommendationsFromSqlServer",
+    "recommendations": [
+      {
+        "recommendationJobId": "[parameters('unattachedDisksRecommendationJobId')]",
+        "runbookName": "[variables('unattachedDisksRecommendationsRunbookName')]"
+      },
+      {
+        "recommendationJobId": "[parameters('advisorCostAugmentedRecommendationJobId')]",
+        "runbookName": "[variables('advisorCostAugmentedRecommendationsRunbookName')]"
+      },
+      {
+        "recommendationJobId": "[parameters('advisorAsIsRecommendationJobId')]",
+        "runbookName": "[variables('advisorAsIsRecommendationsRunbookName')]"
+      },
+      {
+        "recommendationJobId": "[parameters('vmsHaRecommendationJobId')]",
+        "runbookName": "[variables('vmsHARecommendationsRunbookName')]"
+      },
+      {
+        "recommendationJobId": "[parameters('vmOptimizationsRecommendationJobId')]",
+        "runbookName": "[variables('vmOptimizationsRecommendationsRunbookName')]"
+      },
+      {
+        "recommendationJobId": "[parameters('aadExpiringCredsRecommendationJobId')]",
+        "runbookName": "[variables('aadExpiringCredsRecommendationsRunbookName')]"
+      },
+      {
+        "recommendationJobId": "[parameters('unusedLoadBalancersRecommendationJobId')]",
+        "runbookName": "[variables('unusedLBsRecommendationsRunbookName')]"
+      },
+      {
+        "recommendationJobId": "[parameters('unusedAppGWsRecommendationJobId')]",
+        "runbookName": "[variables('unusedAppGWsRecommendationsRunbookName')]"
+      },
+      {
+        "recommendationJobId": "[parameters('armOptimizationsRecommendationJobId')]",
+        "runbookName": "[variables('armOptimizationsRecommendationsRunbookName')]"
+      },
+      {
+        "recommendationJobId": "[parameters('vnetOptimizationsRecommendationJobId')]",
+        "runbookName": "[variables('vnetOptimizationsRecommendationsRunbookName')]"
+      },
+      {
+        "recommendationJobId": "[parameters('vmssOptimizationsRecommendationJobId')]",
+        "runbookName": "[variables('vmssOptimizationsRecommendationsRunbookName')]"
+      },
+      {
+        "recommendationJobId": "[parameters('sqldbOptimizationsRecommendationJobId')]",
+        "runbookName": "[variables('sqldbOptimizationsRecommendationsRunbookName')]"
+      },
+      {
+        "recommendationJobId": "[parameters('storageOptimizationsRecommendationJobId')]",
+        "runbookName": "[variables('storageOptimizationsRecommendationsRunbookName')]"
+      },
+      {
+        "recommendationJobId": "[parameters('appServiceOptimizationsRecommendationJobId')]",
+        "runbookName": "[variables('appServiceOptimizationsRecommendationsRunbookName')]"
+      },
+      {
+        "recommendationJobId": "[parameters('diskOptimizationsRecommendationJobId')]",
+        "runbookName": "[variables('diskOptimizationsRecommendationsRunbookName')]"
+      },
+      {
+        "recommendationJobId": "[parameters('awsEC2RecommendationJobId')]",
+        "runbookName": "[variables('awsEC2RecommendationsRunbookName')]"
+      },
+      {
+        "recommendationJobId": "[parameters('awsEBSUnattachedRecommendationJobId')]",
+        "runbookName": "[variables('awsEBSUnattachedRecommendationsRunbookName')]"
+      },
+      {
+        "recommendationJobId": "[parameters('awsEBSUnderutilizedRecommendationJobId')]",
+        "runbookName": "[variables('awsEBSUnderutilizedRecommendationsRunbookName')]"
+      },
+      {
+        "recommendationJobId": "[parameters('awsEIPRecommendationJobId')]",
+        "runbookName": "[variables('awsEIPRecommendationsRunbookName')]"
+      },
+      {
+        "recommendationJobId": "[parameters('awsRDSRecommendationJobId')]",
+        "runbookName": "[variables('awsRDSRecommendationsRunbookName')]"
+      },
+      {
+        "recommendationJobId": "[parameters('awsLBRecommendationJobId')]",
+        "runbookName": "[variables('awsLBRecommendationsRunbookName')]"
+      },
+      {
+        "recommendationJobId": "[parameters('awsLambdaRecommendationJobId')]",
+        "runbookName": "[variables('awsLambdaRecommendationsRunbookName')]"
+      },
+      {
+        "recommendationJobId": "[parameters('awsECSRecommendationJobId')]",
+        "runbookName": "[variables('awsECSRecommendationsRunbookName')]"
+      },
+      {
+        "recommendationJobId": "[parameters('awsElasticBeanstalkRecommendationJobId')]",
+        "runbookName": "[variables('awsElasticBeanstalkRecommendationsRunbookName')]"
+      },
+      {
+        "recommendationJobId": "[parameters('awsBucketsRecommendationJobId')]",
+        "runbookName": "[variables('awsBucketsRecommendationsRunbookName')]"
+      },
+      {
+        "recommendationJobId": "[parameters('gcpVMsRecommendationJobId')]",
+        "runbookName": "[variables('gcpVMsRecommendationsRunbookName')]"
+      },
+      {
+        "recommendationJobId": "[parameters('gcpVMsOffHoursRecommendationJobId')]",
+        "runbookName": "[variables('gcpVMsOffHoursRecommendationsRunbookName')]"
+      },
+      {
+        "recommendationJobId": "[parameters('gcpIdleDisksRecommendationJobId')]",
+        "runbookName": "[variables('gcpIdleDisksRecommendationsRunbookName')]"
+      },
+      {
+        "recommendationJobId": "[parameters('gcpUnderutilizedDisksRecommendationJobId')]",
+        "runbookName": "[variables('gcpUnderutilizedDisksRecommendationsRunbookName')]"
+      },
+      {
+        "recommendationJobId": "[parameters('gcpSQLRecommendationJobId')]",
+        "runbookName": "[variables('gcpSQLRecommendationsRunbookName')]"
+      },
+      {
+        "recommendationJobId": "[parameters('gcpIdleServicesRecommendationJobId')]",
+        "runbookName": "[variables('gcpIdleServicesRecommendationsRunbookName')]"
+      },
+      {
+        "recommendationJobId": "[parameters('gcpUnattachedIPsRecommendationJobId')]",
+        "runbookName": "[variables('gcpUnattachedIPsRecommendationsRunbookName')]"
+      },
+      {
+        "recommendationJobId": "[parameters('gcpLBRecommendationJobId')]",
+        "runbookName": "[variables('gcpLBRecommendationsRunbookName')]"
+      },
+      {
+        "recommendationJobId": "[parameters('gcpBucketsRecommendationJobId')]",
+        "runbookName": "[variables('gcpBucketsRecommendationsRunbookName')]"
+      },
+      {
+        "recommendationJobId": "[parameters('underutilizedVMsRecommendationJobId')]",
+        "runbookName": "[variables('underutilizedVMsRecommendationsRunbookName')]"
+      },
+      {
+        "recommendationJobId": "[parameters('unmanagedDisksRecommendationJobId')]",
+        "runbookName": "[variables('unmanagedDisksRecommendationsRunbookName')]"
+      },
+      {
+        "recommendationJobId": "[parameters('vmOffHoursRecommendationJobId')]",
+        "runbookName": "[variables('vmOffHoursRecommendationsRunbookName')]"
+      }
+    ],
+    "remediationLogsContainerName": "remediationlogs",
+    "recommendationsContainerName": "recommendationsexports",
+    "csvIngestRunbookName": "Ingest-OptimizationCSVExportsToLogAnalytics",
+    "recommendationsIngestRunbookName": "Ingest-RecommendationsToSQLServer",
+    "recommendationsLogAnalyticsIngestRunbookName": "Ingest-RecommendationsToLogAnalytics",
+    "suppressionsLogAnalyticsIngestRunbookName": "Ingest-SuppressionsToLogAnalytics",
+    "advisorRightSizeFilteredRemediationRunbookName": "Remediate-AdvisorRightSizeFiltered",
+    "longDeallocatedVMsFilteredRemediationRunbookName": "Remediate-LongDeallocatedVMsFiltered",
+    "unattachedDisksFilteredRemediationRunbookName": "Remediate-UnattachedDisksFiltered",
+    "remediationLogsIngestScheduleName": "AzureOptimization_IngestRemediationLogsDaily",
+    "recommendationsScheduleName": "AzureOptimization_RecommendationsWeekly",
+    "recommendationsIngestScheduleName": "AzureOptimization_IngestRecommendationsWeekly",
+    "suppressionsIngestScheduleName": "AzureOptimization_IngestSuppressionsWeekly",
+    "recommendationsCleanUpScheduleName": "AzureOptimization_CleanUpRecommendationsWeekly",
+    "Az_Accounts": {
+      "name": "Az.Accounts",
+      "url": "https://www.powershellgallery.com/api/v2/package/Az.Accounts/2.12.1"
+    },
+    "Microsoft_Graph_Authentication": {
+      "name": "Microsoft.Graph.Authentication",
+      "url": "https://www.powershellgallery.com/api/v2/package/Microsoft.Graph.Authentication/2.4.0"
+    },
+    "psModules": [
+      {
+        "name": "Az.Compute",
+        "url": "https://www.powershellgallery.com/api/v2/package/Az.Compute/5.7.0"
+      },
+      {
+        "name": "Az.OperationalInsights",
+        "url": "https://www.powershellgallery.com/api/v2/package/Az.OperationalInsights/3.2.0"
+      },
+      {
+        "name": "Az.ResourceGraph",
+        "url": "https://www.powershellgallery.com/api/v2/package/Az.ResourceGraph/0.13.0"
+      },
+      {
+        "name": "Az.Storage",
+        "url": "https://www.powershellgallery.com/api/v2/package/Az.Storage/5.5.0"
+      },
+      {
+        "name": "Az.Resources",
+        "url": "https://www.powershellgallery.com/api/v2/package/Az.Resources/6.6.0"
+      },
+      {
+        "name": "Az.Monitor",
+        "url": "https://www.powershellgallery.com/api/v2/package/Az.Monitor/4.4.1"
+      },
+      {
+        "name": "Az.PolicyInsights",
+        "url": "https://www.powershellgallery.com/api/v2/package/Az.PolicyInsights/1.6.0"
+      },
+      {
+        "name": "Microsoft.Graph.Users",
+        "url": "https://www.powershellgallery.com/api/v2/package/Microsoft.Graph.Users/2.4.0"
+      },
+      {
+        "name": "Microsoft.Graph.Groups",
+        "url": "https://www.powershellgallery.com/api/v2/package/Microsoft.Graph.Groups/2.4.0"
+      },
+      {
+        "name": "Microsoft.Graph.Applications",
+        "url": "https://www.powershellgallery.com/api/v2/package/Microsoft.Graph.Applications/2.4.0"
+      },
+      {
+        "name": "Microsoft.Graph.Identity.DirectoryManagement",
+        "url": "https://www.powershellgallery.com/api/v2/package/Microsoft.Graph.Identity.DirectoryManagement/2.4.0"
+      }
+    ],
+    "runbooks": [
+      {
+        "name": "[variables('advisorExportsRunbookName')]",
+        "version": "1.4.3.0",
+        "description": "Exports Azure Advisor recommendations to Blob Storage using the Advisor API",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/data-collection/{0}.ps1', variables('advisorExportsRunbookName')))]"
+      },
+      {
+        "name": "[variables('argDisksExportsRunbookName')]",
+        "version": "1.3.5.0",
+        "description": "Exports Managed Disks properties to Blob Storage using Azure Resource Graph",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/data-collection/{0}.ps1', variables('argDisksExportsRunbookName')))]"
+      },
+      {
+        "name": "[variables('argVhdExportsRunbookName')]",
+        "version": "1.1.5.0",
+        "description": "Exports Unmanaged Disks (owned by a VM) properties to Blob Storage using Azure Resource Graph",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/data-collection/{0}.ps1', variables('argVhdExportsRunbookName')))]"
+      },
+      {
+        "name": "[variables('argVmExportsRunbookName')]",
+        "version": "1.4.5.0",
+        "description": "Exports Virtual Machine properties to Blob Storage using Azure Resource Graph",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/data-collection/{0}.ps1', variables('argVmExportsRunbookName')))]"
+      },
+      {
+        "name": "[variables('argVmssExportsRunbookName')]",
+        "version": "1.0.3.0",
+        "description": "Exports VMSS properties to Blob Storage using Azure Resource Graph",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/data-collection/{0}.ps1', variables('argVmssExportsRunbookName')))]"
+      },
+      {
+        "name": "[variables('argAvailSetExportsRunbookName')]",
+        "version": "1.1.5.0",
+        "description": "Exports Availability Set properties to Blob Storage using Azure Resource Graph",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/data-collection/{0}.ps1', variables('argAvailSetExportsRunbookName')))]"
+      },
+      {
+        "name": "[variables('consumptionExportsRunbookName')]",
+        "version": "2.1.1.0",
+        "description": "Exports Azure Consumption events to Blob Storage using Azure Consumption API",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/data-collection/{0}.ps1', variables('consumptionExportsRunbookName')))]"
+      },
+      {
+        "name": "[variables('aadObjectsExportsRunbookName')]",
+        "version": "1.3.1.0",
+        "description": "Exports Azure AAD Objects to Blob Storage using Azure ARM API",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/data-collection/{0}.ps1', variables('aadObjectsExportsRunbookName')))]"
+      },
+      {
+        "name": "[variables('argLoadBalancersExportsRunbookName')]",
+        "version": "1.1.5.0",
+        "description": "Exports Load Balancer properties to Blob Storage using Azure Resource Graph",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/data-collection/{0}.ps1', variables('argLoadBalancersExportsRunbookName')))]"
+      },
+      {
+        "name": "[variables('argAppGWsExportsRunbookName')]",
+        "version": "1.1.5.0",
+        "description": "Exports Application Gateway properties to Blob Storage using Azure Resource Graph",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/data-collection/{0}.ps1', variables('argAppGWsExportsRunbookName')))]"
+      },
+      {
+        "name": "[variables('argResContainersExportsRunbookName')]",
+        "version": "1.0.6.0",
+        "description": "Exports Resource Containers properties to Blob Storage using Azure Resource Graph",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/data-collection/{0}.ps1', variables('argResContainersExportsRunbookName')))]"
+      },
+      {
+        "name": "[variables('rbacExportsRunbookName')]",
+        "version": "1.1.1.0",
+        "description": "Exports RBAC assignments to Blob Storage using ARM and Microsoft Entra",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/data-collection/{0}.ps1', variables('rbacExportsRunbookName')))]"
+      },
+      {
+        "name": "[variables('argNICExportsRunbookName')]",
+        "version": "1.0.3.0",
+        "description": "Exports NIC properties to Blob Storage using Azure Resource Graph",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/data-collection/{0}.ps1', variables('argNICExportsRunbookName')))]"
+      },
+      {
+        "name": "[variables('argNSGExportsRunbookName')]",
+        "version": "1.0.3.0",
+        "description": "Exports NSG properties to Blob Storage using Azure Resource Graph",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/data-collection/{0}.ps1', variables('argNSGExportsRunbookName')))]"
+      },
+      {
+        "name": "[variables('argPublicIpExportsRunbookName')]",
+        "version": "1.0.3.0",
+        "description": "Exports Public IP properties to Blob Storage using Azure Resource Graph",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/data-collection/{0}.ps1', variables('argPublicIpExportsRunbookName')))]"
+      },
+      {
+        "name": "[variables('argVNetExportsRunbookName')]",
+        "version": "1.0.3.0",
+        "description": "Exports VNet properties to Blob Storage using Azure Resource Graph",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/data-collection/{0}.ps1', variables('argVNetExportsRunbookName')))]"
+      },
+      {
+        "name": "[variables('argSqlDbExportsRunbookName')]",
+        "version": "1.0.3.0",
+        "description": "Exports SQL DB properties to Blob Storage using Azure Resource Graph",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/data-collection/{0}.ps1', variables('argSqlDbExportsRunbookName')))]"
+      },
+      {
+        "name": "[variables('policyStateExportsRunbookName')]",
+        "version": "1.0.4.0",
+        "description": "Exports Azure Policy State to Blob Storage",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/data-collection/{0}.ps1', variables('policyStateExportsRunbookName')))]"
+      },
+      {
+        "name": "[variables('monitorExportsRunbookName')]",
+        "version": "1.0.3.0",
+        "description": "Exports Azure Monitor metrics to Blob Storage",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/data-collection/{0}.ps1', variables('monitorExportsRunbookName')))]"
+      },
+      {
+        "name": "[variables('argAppServicePlanExportsRunbookName')]",
+        "version": "1.0.2.0",
+        "description": "Exports App Service Plan properties to Blob Storage using Azure Resource Graph",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/data-collection/{0}.ps1', variables('argAppServicePlanExportsRunbookName')))]"
+      },
+      {
+        "name": "[variables('reservationsExportsRunbookName')]",
+        "version": "1.1.3.0",
+        "description": "Exports Reservations Usage to Blob Storage using the EA or MCA APIs",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/data-collection/{0}.ps1', variables('reservationsExportsRunbookName')))]"
+      },
+      {
+        "name": "[variables('reservationsPriceExportsRunbookName')]",
+        "version": "1.0.2.0",
+        "description": "Exports Reservations Prices to Blob Storage using the Retail Prices API",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/data-collection/{0}.ps1', variables('reservationsPriceExportsRunbookName')))]"
+      },
+      {
+        "name": "[variables('priceSheetExportsRunbookName')]",
+        "version": "1.1.2.0",
+        "description": "Exports Price Sheet to Blob Storage using the EA or MCA APIs",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/data-collection/{0}.ps1', variables('priceSheetExportsRunbookName')))]"
+      },
+      {
+        "name": "[variables('savingsPlansExportsRunbookName')]",
+        "version": "1.0.2.0",
+        "description": "Exports Savings Plans Usage to Blob Storage using the EA or MCA APIs",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/data-collection/{0}.ps1', variables('savingsPlansExportsRunbookName')))]"
+      },
+      {
+        "name": "[variables('csvIngestRunbookName')]",
+        "version": "1.6.2.0",
+        "description": "Ingests CSV blobs as custom logs to Log Analytics",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/data-collection/{0}.ps1', variables('csvIngestRunbookName')))]"
+      },
+      {
+        "name": "[variables('unattachedDisksRecommendationsRunbookName')]",
+        "version": "2.5.1.0",
+        "description": "Generates unattached disks recommendations",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/recommendations/{0}.ps1', variables('unattachedDisksRecommendationsRunbookName')))]"
+      },
+      {
+        "name": "[variables('advisorCostAugmentedRecommendationsRunbookName')]",
+        "version": "2.10.1.0",
+        "description": "Generates augmented Advisor Cost recommendations",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/recommendations/{0}.ps1', variables('advisorCostAugmentedRecommendationsRunbookName')))]"
+      },
+      {
+        "name": "[variables('advisorAsIsRecommendationsRunbookName')]",
+        "version": "1.6.1.0",
+        "description": "Generates all types of Advisor recommendations",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/recommendations/{0}.ps1', variables('advisorAsIsRecommendationsRunbookName')))]"
+      },
+      {
+        "name": "[variables('vmsHARecommendationsRunbookName')]",
+        "version": "1.1.1.0",
+        "description": "Generates VMs High Availability recommendations",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/recommendations/{0}.ps1', variables('vmsHARecommendationsRunbookName')))]"
+      },
+      {
+        "name": "[variables('vmOptimizationsRecommendationsRunbookName')]",
+        "version": "1.1.1.0",
+        "description": "Generates VM optimizations recommendations",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/recommendations/{0}.ps1', variables('vmOptimizationsRecommendationsRunbookName')))]"
+      },
+      {
+        "name": "[variables('aadExpiringCredsRecommendationsRunbookName')]",
+        "version": "1.2.1.0",
+        "description": "Generates AAD Objects with expiring credentials recommendations",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/recommendations/{0}.ps1', variables('aadExpiringCredsRecommendationsRunbookName')))]"
+      },
+      {
+        "name": "[variables('unusedLBsRecommendationsRunbookName')]",
+        "version": "1.3.1.0",
+        "description": "Generates unused Load Balancers recommendations",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/recommendations/{0}.ps1', variables('unusedLBsRecommendationsRunbookName')))]"
+      },
+      {
+        "name": "[variables('unusedAppGWsRecommendationsRunbookName')]",
+        "version": "1.3.1.0",
+        "description": "Generates unused Application Gateways recommendations",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/recommendations/{0}.ps1', variables('unusedAppGWsRecommendationsRunbookName')))]"
+      },
+      {
+        "name": "[variables('armOptimizationsRecommendationsRunbookName')]",
+        "version": "1.1.1.0",
+        "description": "Generates ARM optimizations recommendations",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/recommendations/{0}.ps1', variables('armOptimizationsRecommendationsRunbookName')))]"
+      },
+      {
+        "name": "[variables('vnetOptimizationsRecommendationsRunbookName')]",
+        "version": "1.1.1.0",
+        "description": "Generates Virtual Network optimizations recommendations",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/recommendations/{0}.ps1', variables('vnetOptimizationsRecommendationsRunbookName')))]"
+      },
+      {
+        "name": "[variables('vmssOptimizationsRecommendationsRunbookName')]",
+        "version": "1.2.1.0",
+        "description": "Generates VM Scale Set optimizations recommendations",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/recommendations/{0}.ps1', variables('vmssOptimizationsRecommendationsRunbookName')))]"
+      },
+      {
+        "name": "[variables('sqldbOptimizationsRecommendationsRunbookName')]",
+        "version": "1.2.1.0",
+        "description": "Generates SQL DB optimizations recommendations",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/recommendations/{0}.ps1', variables('sqldbOptimizationsRecommendationsRunbookName')))]"
+      },
+      {
+        "name": "[variables('storageOptimizationsRecommendationsRunbookName')]",
+        "version": "1.1.1.0",
+        "description": "Generates Storage Account optimizations recommendations",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/recommendations/{0}.ps1', variables('storageOptimizationsRecommendationsRunbookName')))]"
+      },
+      {
+        "name": "[variables('appServiceOptimizationsRecommendationsRunbookName')]",
+        "version": "1.1.1.0",
+        "description": "Generates App Service optimizations recommendations",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/recommendations/{0}.ps1', variables('appServiceOptimizationsRecommendationsRunbookName')))]"
+      },
+      {
+        "name": "[variables('diskOptimizationsRecommendationsRunbookName')]",
+        "version": "1.2.1.0",
+        "description": "Generates Disk optimizations recommendations",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/recommendations/{0}.ps1', variables('diskOptimizationsRecommendationsRunbookName')))]"
+      },
+      {
+        "name": "[variables('recommendationsIngestRunbookName')]",
+        "version": "1.7.1.0",
+        "description": "Ingests JSON-based recommendations into an Azure SQL Database",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/recommendations/{0}.ps1', variables('recommendationsIngestRunbookName')))]"
+      },
+      {
+        "name": "[variables('recommendationsLogAnalyticsIngestRunbookName')]",
+        "version": "1.1.1.0",
+        "description": "Ingests JSON-based recommendations into Log Analytics",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/recommendations/{0}.ps1', variables('recommendationsLogAnalyticsIngestRunbookName')))]"
+      },
+      {
+        "name": "[variables('suppressionsLogAnalyticsIngestRunbookName')]",
+        "version": "1.1.0.0",
+        "description": "Ingests suppressions into Log Analytics",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/recommendations/{0}.ps1', variables('suppressionsLogAnalyticsIngestRunbookName')))]"
+      },
+      {
+        "name": "[variables('advisorRightSizeFilteredRemediationRunbookName')]",
+        "version": "1.3.1.0",
+        "description": "Remediates Azure Advisor right-size recommendations given fit and tag filters",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/remediations/{0}.ps1', variables('advisorRightSizeFilteredRemediationRunbookName')))]"
+      },
+      {
+        "name": "[variables('longDeallocatedVMsFilteredRemediationRunbookName')]",
+        "version": "1.1.1.0",
+        "description": "Remediates long-deallocated VMs recommendations given fit and tag filters",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/remediations/{0}.ps1', variables('longDeallocatedVMsFilteredRemediationRunbookName')))]"
+      },
+      {
+        "name": "[variables('unattachedDisksFilteredRemediationRunbookName')]",
+        "version": "1.1.1.0",
+        "description": "Remediates unattached disks recommendations given fit and tag filters",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/remediations/{0}.ps1', variables('unattachedDisksFilteredRemediationRunbookName')))]"
+      },
+      {
+        "name": "[variables('cleanUpOlderRecommendationsRunbookName')]",
+        "version": "1.1.0.0",
+        "description": "Cleans up older recommendations from SQL Database",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/maintenance/{0}.ps1', variables('cleanUpOlderRecommendationsRunbookName')))]"
+      },
+      {
+        "name": "[variables('vmOffHoursExportsRunbookName')]",
+        "version": "1.0.0.0",
+        "description": "Exports VM off-hours underutilization data to Blob Storage",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/data-collection/{0}.ps1', variables('vmOffHoursExportsRunbookName')))]"
+      },
+      {
+        "name": "[variables('awsEC2ExportsRunbookName')]",
+        "version": "1.0.0.0",
+        "description": "Exports AWS EC2 underutilized instances to Blob Storage",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/data-collection/aws/{0}.ps1', variables('awsEC2ExportsRunbookName')))]"
+      },
+      {
+        "name": "[variables('awsEBSUnattachedExportsRunbookName')]",
+        "version": "1.0.0.0",
+        "description": "Exports AWS unattached EBS volumes to Blob Storage",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/data-collection/aws/{0}.ps1', variables('awsEBSUnattachedExportsRunbookName')))]"
+      },
+      {
+        "name": "[variables('awsEBSUnderutilizedExportsRunbookName')]",
+        "version": "1.0.0.0",
+        "description": "Exports AWS underutilized EBS volumes to Blob Storage",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/data-collection/aws/{0}.ps1', variables('awsEBSUnderutilizedExportsRunbookName')))]"
+      },
+      {
+        "name": "[variables('awsEIPExportsRunbookName')]",
+        "version": "1.0.0.0",
+        "description": "Exports AWS unattached EIPs to Blob Storage",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/data-collection/aws/{0}.ps1', variables('awsEIPExportsRunbookName')))]"
+      },
+      {
+        "name": "[variables('awsRDSExportsRunbookName')]",
+        "version": "1.0.0.0",
+        "description": "Exports AWS underutilized RDS instances to Blob Storage",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/data-collection/aws/{0}.ps1', variables('awsRDSExportsRunbookName')))]"
+      },
+      {
+        "name": "[variables('awsLBExportsRunbookName')]",
+        "version": "1.0.0.0",
+        "description": "Exports AWS underutilized Load Balancers to Blob Storage",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/data-collection/aws/{0}.ps1', variables('awsLBExportsRunbookName')))]"
+      },
+      {
+        "name": "[variables('awsLambdaExportsRunbookName')]",
+        "version": "1.0.0.0",
+        "description": "Exports AWS idle Lambda functions to Blob Storage",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/data-collection/aws/{0}.ps1', variables('awsLambdaExportsRunbookName')))]"
+      },
+      {
+        "name": "[variables('awsECSExportsRunbookName')]",
+        "version": "1.0.0.0",
+        "description": "Exports AWS idle ECS services to Blob Storage",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/data-collection/aws/{0}.ps1', variables('awsECSExportsRunbookName')))]"
+      },
+      {
+        "name": "[variables('awsElasticBeanstalkExportsRunbookName')]",
+        "version": "1.0.0.0",
+        "description": "Exports AWS idle Elastic Beanstalk environments to Blob Storage",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/data-collection/aws/{0}.ps1', variables('awsElasticBeanstalkExportsRunbookName')))]"
+      },
+      {
+        "name": "[variables('awsBucketsExportsRunbookName')]",
+        "version": "1.0.0.0",
+        "description": "Exports AWS buckets without retention policy to Blob Storage",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/data-collection/aws/{0}.ps1', variables('awsBucketsExportsRunbookName')))]"
+      },
+      {
+        "name": "[variables('gcpVMsExportsRunbookName')]",
+        "version": "1.0.0.0",
+        "description": "Exports GCP underutilized VMs to Blob Storage",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/data-collection/gcp/{0}.ps1', variables('gcpVMsExportsRunbookName')))]"
+      },
+      {
+        "name": "[variables('gcpVMsOffHoursExportsRunbookName')]",
+        "version": "1.0.0.0",
+        "description": "Exports GCP underutilized VMs off-hours to Blob Storage",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/data-collection/gcp/{0}.ps1', variables('gcpVMsOffHoursExportsRunbookName')))]"
+      },
+      {
+        "name": "[variables('gcpIdleDisksExportsRunbookName')]",
+        "version": "1.0.0.0",
+        "description": "Exports GCP idle disks to Blob Storage",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/data-collection/gcp/{0}.ps1', variables('gcpIdleDisksExportsRunbookName')))]"
+      },
+      {
+        "name": "[variables('gcpUnderutilizedDisksExportsRunbookName')]",
+        "version": "1.0.0.0",
+        "description": "Exports GCP underutilized disks to Blob Storage",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/data-collection/gcp/{0}.ps1', variables('gcpUnderutilizedDisksExportsRunbookName')))]"
+      },
+      {
+        "name": "[variables('gcpUnmanagedDisksExportsRunbookName')]",
+        "version": "1.0.0.0",
+        "description": "Exports GCP unmanaged disks to Blob Storage",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/data-collection/gcp/{0}.ps1', variables('gcpUnmanagedDisksExportsRunbookName')))]"
+      },
+      {
+        "name": "[variables('gcpIdleServicesExportsRunbookName')]",
+        "version": "1.0.0.0",
+        "description": "Exports GCP idle services to Blob Storage",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/data-collection/gcp/{0}.ps1', variables('gcpIdleServicesExportsRunbookName')))]"
+      },
+      {
+        "name": "[variables('gcpUnattachedIPsExportsRunbookName')]",
+        "version": "1.0.0.0",
+        "description": "Exports GCP unattached IPs to Blob Storage",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/data-collection/gcp/{0}.ps1', variables('gcpUnattachedIPsExportsRunbookName')))]"
+      },
+      {
+        "name": "[variables('gcpSQLExportsRunbookName')]",
+        "version": "1.0.0.0",
+        "description": "Exports GCP underutilized Cloud SQL instances to Blob Storage",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/data-collection/gcp/{0}.ps1', variables('gcpSQLExportsRunbookName')))]"
+      },
+      {
+        "name": "[variables('gcpBucketsExportsRunbookName')]",
+        "version": "1.0.0.0",
+        "description": "Exports GCP buckets without retention policy to Blob Storage",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/data-collection/gcp/{0}.ps1', variables('gcpBucketsExportsRunbookName')))]"
+      },
+      {
+        "name": "[variables('gcpLBExportsRunbookName')]",
+        "version": "1.0.0.0",
+        "description": "Exports GCP unused Load Balancers to Blob Storage",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/data-collection/gcp/{0}.ps1', variables('gcpLBExportsRunbookName')))]"
+      },
+      {
+        "name": "[variables('gcpFOCUSIngestRunbookName')]",
+        "version": "1.0.0.0",
+        "description": "Ingests GCP FOCUS data into Log Analytics",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/data-collection/gcp/{0}.ps1', variables('gcpFOCUSIngestRunbookName')))]"
+      },
+      {
+        "name": "[variables('awsEC2RecommendationsRunbookName')]",
+        "version": "1.0.0.0",
+        "description": "Generates AWS EC2 underutilized instances recommendations",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/recommendations/aws/{0}.ps1', variables('awsEC2RecommendationsRunbookName')))]"
+      },
+      {
+        "name": "[variables('awsEBSUnattachedRecommendationsRunbookName')]",
+        "version": "1.0.0.0",
+        "description": "Generates AWS unattached EBS volumes recommendations",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/recommendations/aws/{0}.ps1', variables('awsEBSUnattachedRecommendationsRunbookName')))]"
+      },
+      {
+        "name": "[variables('awsEBSUnderutilizedRecommendationsRunbookName')]",
+        "version": "1.0.0.0",
+        "description": "Generates AWS underutilized EBS volumes recommendations",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/recommendations/aws/{0}.ps1', variables('awsEBSUnderutilizedRecommendationsRunbookName')))]"
+      },
+      {
+        "name": "[variables('awsEIPRecommendationsRunbookName')]",
+        "version": "1.0.0.0",
+        "description": "Generates AWS unattached EIPs recommendations",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/recommendations/aws/{0}.ps1', variables('awsEIPRecommendationsRunbookName')))]"
+      },
+      {
+        "name": "[variables('awsRDSRecommendationsRunbookName')]",
+        "version": "1.0.0.0",
+        "description": "Generates AWS underutilized RDS instances recommendations",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/recommendations/aws/{0}.ps1', variables('awsRDSRecommendationsRunbookName')))]"
+      },
+      {
+        "name": "[variables('awsLBRecommendationsRunbookName')]",
+        "version": "1.0.0.0",
+        "description": "Generates AWS underutilized Load Balancers recommendations",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/recommendations/aws/{0}.ps1', variables('awsLBRecommendationsRunbookName')))]"
+      },
+      {
+        "name": "[variables('awsLambdaRecommendationsRunbookName')]",
+        "version": "1.0.0.0",
+        "description": "Generates AWS idle Lambda functions recommendations",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/recommendations/aws/{0}.ps1', variables('awsLambdaRecommendationsRunbookName')))]"
+      },
+      {
+        "name": "[variables('awsECSRecommendationsRunbookName')]",
+        "version": "1.0.0.0",
+        "description": "Generates AWS idle ECS services recommendations",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/recommendations/aws/{0}.ps1', variables('awsECSRecommendationsRunbookName')))]"
+      },
+      {
+        "name": "[variables('awsElasticBeanstalkRecommendationsRunbookName')]",
+        "version": "1.0.0.0",
+        "description": "Generates AWS idle Elastic Beanstalk environments recommendations",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/recommendations/aws/{0}.ps1', variables('awsElasticBeanstalkRecommendationsRunbookName')))]"
+      },
+      {
+        "name": "[variables('awsBucketsRecommendationsRunbookName')]",
+        "version": "1.0.0.0",
+        "description": "Generates AWS buckets without retention policy recommendations",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/recommendations/aws/{0}.ps1', variables('awsBucketsRecommendationsRunbookName')))]"
+      },
+      {
+        "name": "[variables('gcpVMsRecommendationsRunbookName')]",
+        "version": "1.0.0.0",
+        "description": "Generates GCP underutilized VMs recommendations",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/recommendations/gcp/{0}.ps1', variables('gcpVMsRecommendationsRunbookName')))]"
+      },
+      {
+        "name": "[variables('gcpVMsOffHoursRecommendationsRunbookName')]",
+        "version": "1.0.0.0",
+        "description": "Generates GCP underutilized VMs off-hours recommendations",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/recommendations/gcp/{0}.ps1', variables('gcpVMsOffHoursRecommendationsRunbookName')))]"
+      },
+      {
+        "name": "[variables('gcpIdleDisksRecommendationsRunbookName')]",
+        "version": "1.0.0.0",
+        "description": "Generates GCP idle disks recommendations",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/recommendations/gcp/{0}.ps1', variables('gcpIdleDisksRecommendationsRunbookName')))]"
+      },
+      {
+        "name": "[variables('gcpUnderutilizedDisksRecommendationsRunbookName')]",
+        "version": "1.0.0.0",
+        "description": "Generates GCP underutilized disks recommendations",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/recommendations/gcp/{0}.ps1', variables('gcpUnderutilizedDisksRecommendationsRunbookName')))]"
+      },
+      {
+        "name": "[variables('gcpSQLRecommendationsRunbookName')]",
+        "version": "1.0.0.0",
+        "description": "Generates GCP underutilized Cloud SQL recommendations",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/recommendations/gcp/{0}.ps1', variables('gcpSQLRecommendationsRunbookName')))]"
+      },
+      {
+        "name": "[variables('gcpIdleServicesRecommendationsRunbookName')]",
+        "version": "1.0.0.0",
+        "description": "Generates GCP idle services recommendations",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/recommendations/gcp/{0}.ps1', variables('gcpIdleServicesRecommendationsRunbookName')))]"
+      },
+      {
+        "name": "[variables('gcpUnattachedIPsRecommendationsRunbookName')]",
+        "version": "1.0.0.0",
+        "description": "Generates GCP unattached IPs recommendations",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/recommendations/gcp/{0}.ps1', variables('gcpUnattachedIPsRecommendationsRunbookName')))]"
+      },
+      {
+        "name": "[variables('gcpLBRecommendationsRunbookName')]",
+        "version": "1.0.0.0",
+        "description": "Generates GCP unused Load Balancers recommendations",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/recommendations/gcp/{0}.ps1', variables('gcpLBRecommendationsRunbookName')))]"
+      },
+      {
+        "name": "[variables('gcpBucketsRecommendationsRunbookName')]",
+        "version": "1.0.0.0",
+        "description": "Generates GCP buckets without retention policy recommendations",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/recommendations/gcp/{0}.ps1', variables('gcpBucketsRecommendationsRunbookName')))]"
+      },
+      {
+        "name": "[variables('underutilizedVMsRecommendationsRunbookName')]",
+        "version": "1.0.0.0",
+        "description": "Generates underutilized VMs recommendations",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/recommendations/{0}.ps1', variables('underutilizedVMsRecommendationsRunbookName')))]"
+      },
+      {
+        "name": "[variables('unmanagedDisksRecommendationsRunbookName')]",
+        "version": "1.0.0.0",
+        "description": "Generates unmanaged disks recommendations",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/recommendations/{0}.ps1', variables('unmanagedDisksRecommendationsRunbookName')))]"
+      },
+      {
+        "name": "[variables('vmOffHoursRecommendationsRunbookName')]",
+        "version": "1.0.0.0",
+        "description": "Generates VM off-hours underutilization recommendations",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/recommendations/{0}.ps1', variables('vmOffHoursRecommendationsRunbookName')))]"
+      },
+      {
+        "name": "[variables('distributorOrchestratorRunbookName')]",
+        "version": "1.0.0.0",
+        "description": "Triggers the Optimization Engine Distributor orchestrator",
+        "type": "PowerShell",
+        "scriptUri": "[uri(parameters('templateLocation'), format('runbooks/orchestration/{0}.ps1', variables('distributorOrchestratorRunbookName')))]"
+      }
+    ],
+    "automationVariables": [
+      {
+        "name": "AzureOptimization_CloudEnvironment",
+        "description": "Azure Cloud environment (for example, AzureCloud, AzureChinaCloud, etc.)",
+        "value": "[format('\"{0}\"', parameters('cloudEnvironment'))]"
+      },
+      {
+        "name": "AzureOptimization_AuthenticationOption",
+        "description": "Runbook authentication type (RunAsAccount or ManagedIdentity)",
+        "value": "[format('\"{0}\"', parameters('authenticationOption'))]"
+      },
+      {
+        "name": "AzureOptimization_StorageSink",
+        "description": "The Azure Storage Account where data source exports are dumped to",
+        "value": "[format('\"{0}\"', parameters('storageAccountName'))]"
+      },
+      {
+        "name": "AzureOptimization_ConsumptionOffsetDays",
+        "description": "The offset (in days) for querying for consumption data",
+        "value": 3
+      },
+      {
+        "name": "AzureOptimization_AdvisorFilter",
+        "description": "The category filter to use for Azure Advisor (non-Cost) recommendations exports",
+        "value": "\"HighAvailability,Security,Performance,OperationalExcellence\""
+      },
+      {
+        "name": "AzureOptimization_ReferenceRegion",
+        "description": "The Azure region used as a reference for getting details about Azure VM sizes available",
+        "value": "[format('\"{0}\"', parameters('projectLocation'))]"
+      },
+      {
+        "name": "AzureOptimization_SQLServerDatabase",
+        "description": "The Azure SQL Database name for the ingestion control and recommendations tables",
+        "value": "[format('\"{0}\"', parameters('sqlDatabaseName'))]"
+      },
+      {
+        "name": "AzureOptimization_LogAnalyticsChunkSize",
+        "description": "The size (in rows) for each chunk of Log Analytics ingestion request",
+        "value": 6000
+      },
+      {
+        "name": "AzureOptimization_StorageBlobsPageSize",
+        "description": "The size (in blobs count) for each page of Storage Account container blob listing",
+        "value": 1000
+      },
+      {
+        "name": "AzureOptimization_SQLServerInsertSize",
+        "description": "The size (in inserted lines) for each page of recommendations ingestion into the SQL Database",
+        "value": 900
+      },
+      {
+        "name": "AzureOptimization_LogAnalyticsLogPrefix",
+        "description": "The prefix for all Azure Optimization custom log tables in Log Analytics",
+        "value": "\"AzureOptimization\""
+      },
+      {
+        "name": "AzureOptimization_LogAnalyticsWorkspaceName",
+        "description": "The Log Analytics Workspace Name where optimization data will be ingested",
+        "value": "[format('\"{0}\"', parameters('logAnalyticsWorkspaceName'))]"
+      },
+      {
+        "name": "AzureOptimization_LogAnalyticsWorkspaceRG",
+        "description": "The resource group for the Log Analytics Workspace where optimization data will be ingested",
+        "value": "[format('\"{0}\"', if(not(parameters('logAnalyticsReuse')), resourceGroup().name, parameters('logAnalyticsWorkspaceRG')))]"
+      },
+      {
+        "name": "AzureOptimization_LogAnalyticsWorkspaceSubId",
+        "description": "The Azure subscription for the Log Analytics Workspace where optimization data will be ingested",
+        "value": "[format('\"{0}\"', subscription().subscriptionId)]"
+      },
+      {
+        "name": "AzureOptimization_LogAnalyticsWorkspaceTenantId",
+        "description": "The Microsoft Entra tenant for the Log Analytics Workspace where optimization data will be ingested",
+        "value": "[format('\"{0}\"', subscription().tenantId)]"
+      },
+      {
+        "name": "AzureOptimization_PriceSheetMeterCategories",
+        "description": "Comma-separated meter categories to be included in the Price Sheet (remove variable to include all categories)",
+        "value": "\"Virtual Machines,Storage\""
+      },
+      {
+        "name": "AzureOptimization_RetailPricesCurrencyCode",
+        "description": "The currency code to be used for the retail prices exports (used for Reservations prices)",
+        "value": "\"EUR\""
+      },
+      {
+        "name": "AzureOptimization_RecommendAdvisorPeriodInDays",
+        "description": "The period (in days) to look back for Advisor exported recommendations",
+        "value": 7
+      },
+      {
+        "name": "AzureOptimization_RecommendationLongDeallocatedVmsIntervalDays",
+        "description": "The period (in days) for considering a VM long deallocated",
+        "value": 30
+      },
+      {
+        "name": "AzureOptimization_PerfPercentileCpu",
+        "description": "The percentile to be used for processor metrics",
+        "value": 99
+      },
+      {
+        "name": "AzureOptimization_PerfPercentileMemory",
+        "description": "The percentile to be used for memory metrics",
+        "value": 99
+      },
+      {
+        "name": "AzureOptimization_PerfPercentileNetwork",
+        "description": "The percentile to be used for network metrics",
+        "value": 99
+      },
+      {
+        "name": "AzureOptimization_PerfPercentileDisk",
+        "description": "The percentile to be used for disk metrics",
+        "value": 99
+      },
+      {
+        "name": "AzureOptimization_PerfPercentileSqlDtu",
+        "description": "The percentile to be used for SQL DB DTU metrics",
+        "value": 99
+      },
+      {
+        "name": "AzureOptimization_PerfThresholdCpuPercentage",
+        "description": "The processor usage percentage threshold above which the fit score is decreased or below which the instance is considered underutilized",
+        "value": 30
+      },
+      {
+        "name": "AzureOptimization_PerfThresholdMemoryPercentage",
+        "description": "The memory usage percentage threshold above which the fit score is decreased or below which the instance is considered underutilized",
+        "value": 50
+      },
+      {
+        "name": "AzureOptimization_PerfThresholdCpuDegradedMaxPercentage",
+        "description": "The maximum processor usage percentage threshold above which the instance is considered degraded",
+        "value": 95
+      },
+      {
+        "name": "AzureOptimization_PerfThresholdCpuDegradedAvgPercentage",
+        "description": "The average processor usage percentage threshold above which the instance is considered degraded",
+        "value": 75
+      },
+      {
+        "name": "AzureOptimization_PerfThresholdMemoryDegradedPercentage",
+        "description": "The memory usage percentage threshold above which the instance is considered degraded",
+        "value": 90
+      },
+      {
+        "name": "AzureOptimization_PerfThresholdNetworkMbps",
+        "description": "The network usage threshold (in Mbps) above which the fit score is decreased",
+        "value": 750
+      },
+      {
+        "name": "AzureOptimization_PerfThresholdCpuShutdownPercentage",
+        "description": "The processor usage percentage threshold above which the fit score is decreased (shutdown scenarios)",
+        "value": 5
+      },
+      {
+        "name": "AzureOptimization_PerfThresholdMemoryShutdownPercentage",
+        "description": "The memory usage percentage threshold above which the fit score is decreased (shutdown scenarios)",
+        "value": 100
+      },
+      {
+        "name": "AzureOptimization_PerfThresholdNetworkShutdownMbps",
+        "description": "The network usage threshold (in Mbps) above which the fit score is decreased (shutdown scenarios)",
+        "value": 10
+      },
+      {
+        "name": "AzureOptimization_PerfThresholdDtuPercentage",
+        "description": "The DTU usage percentage threshold below which a SQL Database instance is considered underutilized",
+        "value": 40
+      },
+      {
+        "name": "AzureOptimization_PerfThresholdDtuDegradedPercentage",
+        "description": "The DTU usage percentage threshold above which a SQL Database instance is considered performance degraded",
+        "value": 75
+      },
+      {
+        "name": "AzureOptimization_PerfThresholdDiskIOPSPercentage",
+        "description": "The IOPS usage percentage threshold below which a Disk is considered underutilized",
+        "value": 5
+      },
+      {
+        "name": "AzureOptimization_PerfThresholdDiskMBsPercentage",
+        "description": "The throughput (MBps) usage percentage threshold below which a Disk is considered underutilized",
+        "value": 5
+      },
+      {
+        "name": "AzureOptimization_RemediateRightSizeMinFitScore",
+        "description": "The minimum fit score for right-size remediation",
+        "value": "\"5.0\""
+      },
+      {
+        "name": "AzureOptimization_RemediateRightSizeMinWeeksInARow",
+        "description": "The minimum number of weeks in a row required for a right-size recommendation to be remediated",
+        "value": 4
+      },
+      {
+        "name": "AzureOptimization_RecommendationAdvisorCostRightSizeId",
+        "description": "The Azure Advisor VM right-size recommendation ID",
+        "value": "\"e10b1381-5f0a-47ff-8c7b-37bd13d7c974\""
+      },
+      {
+        "name": "AzureOptimization_RemediateLongDeallocatedVMsMinFitScore",
+        "description": "The minimum fit score for long-deallocated VM remediation",
+        "value": "\"5.0\""
+      },
+      {
+        "name": "AzureOptimization_RemediateLongDeallocatedVMsMinWeeksInARow",
+        "description": "The minimum number of weeks in a row required for a long-deallocated VM recommendation to be remediated",
+        "value": 4
+      },
+      {
+        "name": "AzureOptimization_RecommendationLongDeallocatedVMsId",
+        "description": "The long deallocated VM recommendation ID",
+        "value": "\"c320b790-2e58-452a-aa63-7b62c383ad8a\""
+      },
+      {
+        "name": "AzureOptimization_RemediateUnattachedDisksMinFitScore",
+        "description": "The minimum fit score for unattached disk remediation",
+        "value": "\"5.0\""
+      },
+      {
+        "name": "AzureOptimization_RemediateUnattachedDisksMinWeeksInARow",
+        "description": "The minimum number of weeks in a row required for a unattached disk recommendation to be remediated",
+        "value": 4
+      },
+      {
+        "name": "AzureOptimization_RemediateUnattachedDisksAction",
+        "description": "The action for the unattached disk recommendation to be remediated (Delete or Downsize)",
+        "value": "\"Delete\""
+      },
+      {
+        "name": "AzureOptimization_RecommendationUnattachedDisksId",
+        "description": "The unattached disk recommendation ID",
+        "value": "\"c84d5e86-e2d6-4d62-be7c-cecfbd73b0db\""
+      },
+      {
+        "name": "AzureOptimization_RecommendationAADMinCredValidityDays",
+        "description": "The minimum validity of an AAD Object credential in days",
+        "value": 30
+      },
+      {
+        "name": "AzureOptimization_RecommendationAADMaxCredValidityYears",
+        "description": "The maximum validity of an AAD Object credential in years",
+        "value": 2
+      },
+      {
+        "name": "AzureOptimization_AADObjectsFilter",
+        "description": "The Microsoft Entra object types to export",
+        "value": "\"Application,ServicePrincipal,User,Group\""
+      },
+      {
+        "name": "AzureOptimization_RecommendationRBACAssignmentsPercentageThreshold",
+        "description": "The percentage threshold (used to trigger recommendations) for total RBAC assignments limits",
+        "value": 80
+      },
+      {
+        "name": "AzureOptimization_RecommendationResourceGroupsPerSubPercentageThreshold",
+        "description": "The percentage threshold (used to trigger recommendations) for resource group count limits",
+        "value": 80
+      },
+      {
+        "name": "AzureOptimization_RecommendationVNetSubnetMaxUsedPercentageThreshold",
+        "description": "The percentage threshold (used to trigger recommendations) for maximum subnet address space usage",
+        "value": 80
+      },
+      {
+        "name": "AzureOptimization_RecommendationVNetSubnetMinUsedPercentageThreshold",
+        "description": "The percentage threshold (used to trigger recommendations) for minimum subnet address space usage",
+        "value": 5
+      },
+      {
+        "name": "AzureOptimization_RecommendationVNetSubnetEmptyMinAgeInDays",
+        "description": "The minimum age (in days) for an empty subnet to trigger an NSG rule recommendation",
+        "value": 30
+      },
+      {
+        "name": "AzureOptimization_RecommendationsMaxAgeInDays",
+        "description": "The maximum age (in days) for a recommendation to be kept in the SQL database",
+        "value": 365
+      },
+      {
+        "name": "AzureOptimization_RecommendationStorageAcountGrowthThresholdPercentage",
+        "description": "The minimum Storage Account growth percentage required to flag Storage as not having a retention policy in place",
+        "value": 5
+      },
+      {
+        "name": "AzureOptimization_RecommendationStorageAcountGrowthMonthlyCostThreshold",
+        "description": "The minimum monthly cost (in your EA/MCA currency) required to flag Storage as not having a retention policy in place",
+        "value": 50
+      },
+      {
+        "name": "AzureOptimization_RecommendationStorageAcountGrowthLookbackDays",
+        "description": "The lookback period (in days) for analyzing Storage Account growth",
+        "value": 30
+      },
+      {
+        "name": "AzureOptimization_AWSEnabled",
+        "description": "Whether AWS data collection is enabled",
+        "value": "\"false\""
+      },
+      {
+        "name": "AzureOptimization_GCPEnabled",
+        "description": "Whether GCP data collection is enabled",
+        "value": "\"false\""
+      },
+      {
+        "name": "AzureOptimization_AwsExportsContainer",
+        "description": "The Storage Account container used for AWS exports staging",
+        "value": "\"awsexports\""
+      },
+      {
+        "name": "AzureOptimization_GcpExportsContainer",
+        "description": "The Storage Account container used for GCP exports staging",
+        "value": "\"gcpexports\""
+      },
+      {
+        "name": "AzureOptimization_DistributorVmName",
+        "description": "The name of the distributor VM used to run AWS/GCP collection scripts",
+        "value": "\"\""
+      },
+      {
+        "name": "AzureOptimization_DistributorVmRG",
+        "description": "The resource group of the distributor VM",
+        "value": "\"\""
+      },
+      {
+        "name": "AzureOptimization_DistributorVmLocation",
+        "description": "The location/region of the distributor VM",
+        "value": "[format('\"{0}\"', parameters('projectLocation'))]"
+      },
+      {
+        "name": "AzureOptimization_AWSScriptsPath",
+        "description": "The local path on the distributor VM where AWS collection scripts are stored",
+        "value": "\"\""
+      },
+      {
+        "name": "AzureOptimization_GCPScriptsPath",
+        "description": "The local path on the distributor VM where GCP collection scripts are stored",
+        "value": "\"\""
+      }
+    ]
+  },
+  "resources": [
+    {
+      "condition": "[parameters('enableDefaultTelemetry')]",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2022-09-01",
+      "name": "[format('pid-{0}-{1}', variables('telemetryId'), uniqueString(deployment().name, parameters('projectLocation')))]",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "metadata": {
+            "_generator": {
+              "name": "RAVLs Optimization Engine",
+              "version": "[variables('finOpsToolkitVersion')]"
+            }
+          },
+          "resources": []
+        }
+      }
+    },
+    {
+      "condition": "[not(parameters('logAnalyticsReuse'))]",
+      "type": "Microsoft.OperationalInsights/workspaces",
+      "apiVersion": "2020-08-01",
+      "name": "[parameters('logAnalyticsWorkspaceName')]",
+      "location": "[parameters('projectLocation')]",
+      "tags": "[parameters('resourceTags')]",
+      "properties": {
+        "sku": {
+          "name": "pergb2018"
+        },
+        "retentionInDays": "[parameters('logAnalyticsRetentionDays')]"
+      }
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts",
+      "apiVersion": "2022-09-01",
+      "name": "[parameters('storageAccountName')]",
+      "location": "[parameters('projectLocation')]",
+      "tags": "[parameters('resourceTags')]",
+      "sku": {
+        "name": "Standard_LRS"
+      },
+      "kind": "StorageV2",
+      "properties": {
+        "allowBlobPublicAccess": false,
+        "networkAcls": {
+          "bypass": "AzureServices",
+          "virtualNetworkRules": [],
+          "ipRules": [],
+          "defaultAction": "Allow"
+        },
+        "supportsHttpsTrafficOnly": true,
+        "encryption": {
+          "services": {
+            "file": {
+              "enabled": true
+            },
+            "blob": {
+              "enabled": true
+            }
+          },
+          "keySource": "Microsoft.Storage"
+        },
+        "minimumTlsVersion": "TLS1_2",
+        "accessTier": "Cool"
+      }
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts/blobServices",
+      "apiVersion": "2022-09-01",
+      "name": "[format('{0}/{1}', parameters('storageAccountName'), 'default')]",
+      "properties": {
+        "cors": {
+          "corsRules": []
+        },
+        "deleteRetentionPolicy": {
+          "enabled": false
+        }
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]"
+      ]
+    },
+    {
+      "copy": {
+        "name": "storageCsvExportsContainers",
+        "count": "[length(variables('csvExports'))]"
+      },
+      "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+      "apiVersion": "2022-09-01",
+      "name": "[format('{0}/default/{1}', parameters('storageAccountName'), variables('csvExports')[copyIndex()].containerName)]",
+      "properties": {
+        "publicAccess": "None"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]",
+        "[resourceId('Microsoft.Storage/storageAccounts/blobServices', parameters('storageAccountName'), 'default')]"
+      ]
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+      "apiVersion": "2022-09-01",
+      "name": "[format('{0}/default/{1}', parameters('storageAccountName'), variables('recommendationsContainerName'))]",
+      "properties": {
+        "publicAccess": "None"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]",
+        "[resourceId('Microsoft.Storage/storageAccounts/blobServices', parameters('storageAccountName'), 'default')]"
+      ]
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+      "apiVersion": "2022-09-01",
+      "name": "[format('{0}/default/{1}', parameters('storageAccountName'), variables('remediationLogsContainerName'))]",
+      "properties": {
+        "publicAccess": "None"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]",
+        "[resourceId('Microsoft.Storage/storageAccounts/blobServices', parameters('storageAccountName'), 'default')]"
+      ]
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts/managementPolicies",
+      "apiVersion": "2021-02-01",
+      "name": "[format('{0}/{1}', parameters('storageAccountName'), 'default')]",
+      "properties": {
+        "policy": {
+          "rules": [
+            {
+              "enabled": true,
+              "name": "Clean6MonthsOldBlobs",
+              "type": "Lifecycle",
+              "definition": {
+                "actions": {
+                  "baseBlob": {
+                    "delete": {
+                      "daysAfterModificationGreaterThan": 180
+                    }
+                  },
+                  "snapshot": {
+                    "delete": {
+                      "daysAfterCreationGreaterThan": 180
+                    }
+                  },
+                  "version": {
+                    "delete": {
+                      "daysAfterCreationGreaterThan": 180
+                    }
+                  }
+                },
+                "filters": {
+                  "blobTypes": [
+                    "blockBlob"
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]",
+        "[resourceId('Microsoft.Storage/storageAccounts/blobServices', parameters('storageAccountName'), 'default')]"
+      ]
+    },
+    {
+      "condition": "[not(parameters('sqlServerAlreadyExists'))]",
+      "type": "Microsoft.Sql/servers",
+      "apiVersion": "2022-05-01-preview",
+      "name": "[parameters('sqlServerName')]",
+      "location": "[parameters('projectLocation')]",
+      "tags": "[parameters('resourceTags')]",
+      "properties": {
+        "version": "12.0",
+        "publicNetworkAccess": "Enabled",
+        "minimalTlsVersion": "1.2",
+        "administrators": {
+          "administratorType": "ActiveDirectory",
+          "azureADOnlyAuthentication": true,
+          "login": "[parameters('userPrincipalName')]",
+          "principalType": "[parameters('sqlAdminPrincipalType')]",
+          "sid": "[parameters('userObjectId')]",
+          "tenantId": "[tenant().tenantId]"
+        }
+      }
+    },
+    {
+      "condition": "[parameters('sqlServerAlreadyExists')]",
+      "type": "Microsoft.Sql/servers/administrators",
+      "apiVersion": "2022-05-01-preview",
+      "name": "[format('{0}/{1}', parameters('sqlServerName'), 'ActiveDirectory')]",
+      "properties": {
+        "administratorType": "ActiveDirectory",
+        "login": "[parameters('userPrincipalName')]",
+        "sid": "[parameters('userObjectId')]",
+        "tenantId": "[tenant().tenantId]"
+      }
+    },
+    {
+      "condition": "[parameters('sqlServerAlreadyExists')]",
+      "type": "Microsoft.Sql/servers/azureADOnlyAuthentications",
+      "apiVersion": "2022-05-01-preview",
+      "name": "[format('{0}/{1}', parameters('sqlServerName'), 'Default')]",
+      "properties": {
+        "azureADOnlyAuthentication": true
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers/administrators', parameters('sqlServerName'), 'ActiveDirectory')]"
+      ]
+    },
+    {
+      "type": "Microsoft.Sql/servers/firewallRules",
+      "apiVersion": "2022-05-01-preview",
+      "name": "[format('{0}/{1}', parameters('sqlServerName'), 'AllowAllWindowsAzureIps')]",
+      "properties": {
+        "endIpAddress": "0.0.0.0",
+        "startIpAddress": "0.0.0.0"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', parameters('sqlServerName'))]"
+      ]
+    },
+    {
+      "type": "Microsoft.Sql/servers/databases",
+      "apiVersion": "2022-05-01-preview",
+      "name": "[format('{0}/{1}', parameters('sqlServerName'), parameters('sqlDatabaseName'))]",
+      "location": "[parameters('projectLocation')]",
+      "tags": "[parameters('resourceTags')]",
+      "sku": {
+        "name": "Basic",
+        "tier": "Basic",
+        "capacity": 5
+      },
+      "properties": {
+        "collation": "SQL_Latin1_General_CP1_CI_AS",
+        "maxSizeBytes": 2147483648,
+        "catalogCollation": "SQL_Latin1_General_CP1_CI_AS",
+        "zoneRedundant": false,
+        "readScale": "Disabled",
+        "autoPauseDelay": 60,
+        "requestedBackupStorageRedundancy": "Local"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', parameters('sqlServerName'))]"
+      ]
+    },
+    {
+      "type": "Microsoft.Sql/servers/databases/backupShortTermRetentionPolicies",
+      "apiVersion": "2022-05-01-preview",
+      "name": "[format('{0}/{1}/default', parameters('sqlServerName'), parameters('sqlDatabaseName'))]",
+      "properties": {
+        "retentionDays": "[parameters('sqlBackupRetentionDays')]"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers/databases', parameters('sqlServerName'), parameters('sqlDatabaseName'))]",
+        "[resourceId('Microsoft.Sql/servers', parameters('sqlServerName'))]"
+      ]
+    },
+    {
+      "type": "Microsoft.Automation/automationAccounts",
+      "apiVersion": "2020-01-13-preview",
+      "name": "[parameters('automationAccountName')]",
+      "location": "[parameters('projectLocation')]",
+      "tags": "[parameters('resourceTags')]",
+      "identity": {
+        "type": "SystemAssigned"
+      },
+      "properties": {
+        "sku": {
+          "name": "Basic"
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Automation/automationAccounts/modules",
+      "apiVersion": "2020-01-13-preview",
+      "name": "[format('{0}/{1}', parameters('automationAccountName'), variables('Az_Accounts').name)]",
+      "tags": "[parameters('resourceTags')]",
+      "properties": {
+        "contentLink": {
+          "uri": "[variables('Az_Accounts').url]"
+        }
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName'))]"
+      ]
+    },
+    {
+      "type": "Microsoft.Automation/automationAccounts/modules",
+      "apiVersion": "2020-01-13-preview",
+      "name": "[format('{0}/{1}', parameters('automationAccountName'), variables('Microsoft_Graph_Authentication').name)]",
+      "tags": "[parameters('resourceTags')]",
+      "properties": {
+        "contentLink": {
+          "uri": "[variables('Microsoft_Graph_Authentication').url]"
+        }
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName'))]"
+      ]
+    },
+    {
+      "copy": {
+        "name": "automationModule_All",
+        "count": "[length(variables('psModules'))]"
+      },
+      "type": "Microsoft.Automation/automationAccounts/modules",
+      "apiVersion": "2020-01-13-preview",
+      "name": "[format('{0}/{1}', parameters('automationAccountName'), variables('psModules')[copyIndex()].name)]",
+      "tags": "[parameters('resourceTags')]",
+      "properties": {
+        "contentLink": {
+          "uri": "[variables('psModules')[copyIndex()].url]"
+        }
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName'))]",
+        "[resourceId('Microsoft.Automation/automationAccounts/modules', parameters('automationAccountName'), variables('Az_Accounts').name)]",
+        "[resourceId('Microsoft.Automation/automationAccounts/modules', parameters('automationAccountName'), variables('Microsoft_Graph_Authentication').name)]"
+      ]
+    },
+    {
+      "copy": {
+        "name": "automationRunbooks",
+        "count": "[length(variables('runbooks'))]"
+      },
+      "type": "Microsoft.Automation/automationAccounts/runbooks",
+      "apiVersion": "2020-01-13-preview",
+      "name": "[format('{0}/{1}', parameters('automationAccountName'), variables('runbooks')[copyIndex()].name)]",
+      "tags": "[parameters('resourceTags')]",
+      "location": "[parameters('projectLocation')]",
+      "properties": {
+        "runbookType": "[variables('runbooks')[copyIndex()].type]",
+        "logProgress": false,
+        "logVerbose": false,
+        "description": "[variables('runbooks')[copyIndex()].description]",
+        "publishContentLink": {
+          "uri": "[variables('runbooks')[copyIndex()].scriptUri]",
+          "version": "[variables('runbooks')[copyIndex()].version]"
+        }
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName'))]",
+        "automationModule_All"
+      ]
+    },
+    {
+      "copy": {
+        "name": "automationVariablesAll",
+        "count": "[length(variables('automationVariables'))]"
+      },
+      "type": "Microsoft.Automation/automationAccounts/variables",
+      "apiVersion": "2020-01-13-preview",
+      "name": "[format('{0}/{1}', parameters('automationAccountName'), variables('automationVariables')[copyIndex()].name)]",
+      "properties": {
+        "description": "[variables('automationVariables')[copyIndex()].description]",
+        "value": "[variables('automationVariables')[copyIndex()].value]"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName'))]"
+      ]
+    },
+    {
+      "copy": {
+        "name": "automationVariables_csvExports",
+        "count": "[length(variables('csvExports'))]"
+      },
+      "type": "Microsoft.Automation/automationAccounts/variables",
+      "apiVersion": "2020-01-13-preview",
+      "name": "[format('{0}/{1}', parameters('automationAccountName'), variables('csvExports')[copyIndex()].variableName)]",
+      "properties": {
+        "description": "[variables('csvExports')[copyIndex()].variableDescription]",
+        "value": "[format('\"{0}\"', variables('csvExports')[copyIndex()].containerName)]"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName'))]"
+      ]
+    },
+    {
+      "type": "Microsoft.Automation/automationAccounts/variables",
+      "apiVersion": "2020-01-13-preview",
+      "name": "[format('{0}/{1}', parameters('automationAccountName'), 'AzureOptimization_SQLServerHostname')]",
+      "properties": {
+        "description": "The Azure SQL Server hostname for the ingestion control and recommendations tables",
+        "value": "[format('\"{0}\"', reference(resourceId('Microsoft.Sql/servers', parameters('sqlServerName')), '2022-05-01-preview').fullyQualifiedDomainName)]"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName'))]",
+        "[resourceId('Microsoft.Sql/servers', parameters('sqlServerName'))]"
+      ]
+    },
+    {
+      "type": "Microsoft.Automation/automationAccounts/variables",
+      "apiVersion": "2020-01-13-preview",
+      "name": "[format('{0}/{1}', parameters('automationAccountName'), 'AzureOptimization_LogAnalyticsWorkspaceId')]",
+      "properties": {
+        "description": "The Log Analytics Workspace ID where optimization data will be ingested",
+        "value": "[format('\"{0}\"', reference(if(not(parameters('logAnalyticsReuse')), resourceId('Microsoft.OperationalInsights/workspaces', parameters('logAnalyticsWorkspaceName')), resourceId(parameters('logAnalyticsWorkspaceRG'), 'microsoft.operationalinsights/workspaces', parameters('logAnalyticsWorkspaceName'))), '2020-08-01').customerId)]"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName'))]",
+        "[resourceId('Microsoft.OperationalInsights/workspaces', parameters('logAnalyticsWorkspaceName'))]"
+      ]
+    },
+    {
+      "type": "Microsoft.Automation/automationAccounts/variables",
+      "apiVersion": "2020-01-13-preview",
+      "name": "[format('{0}/{1}', parameters('automationAccountName'), 'AzureOptimization_LogAnalyticsWorkspaceKey')]",
+      "properties": {
+        "description": "The shared key for the Log Analytics Workspace where optimization data will be ingested",
+        "value": "[format('\"{0}\"', listKeys(if(not(parameters('logAnalyticsReuse')), resourceId('Microsoft.OperationalInsights/workspaces', parameters('logAnalyticsWorkspaceName')), resourceId(parameters('logAnalyticsWorkspaceRG'), 'microsoft.operationalinsights/workspaces', parameters('logAnalyticsWorkspaceName'))), '2020-08-01').primarySharedKey)]",
+        "isEncrypted": true
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName'))]",
+        "[resourceId('Microsoft.OperationalInsights/workspaces', parameters('logAnalyticsWorkspaceName'))]"
+      ]
+    },
+    {
+      "copy": {
+        "name": "automationSchedules_csvExports",
+        "count": "[length(variables('csvExportsSchedules'))]"
+      },
+      "type": "Microsoft.Automation/automationAccounts/schedules",
+      "apiVersion": "2020-01-13-preview",
+      "name": "[format('{0}/{1}', parameters('automationAccountName'), variables('csvExportsSchedules')[copyIndex()].exportSchedule)]",
+      "properties": {
+        "description": "[variables('csvExportsSchedules')[copyIndex()].exportDescription]",
+        "expiryTime": "9999-12-31T17:59:00-06:00",
+        "startTime": "[dateTimeAdd(parameters('baseTime'), variables('csvExportsSchedules')[copyIndex()].exportTimeOffset)]",
+        "interval": 1,
+        "frequency": "[variables('csvExportsSchedules')[copyIndex()].exportFrequency]"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName'))]"
+      ]
+    },
+    {
+      "copy": {
+        "name": "automationSchedules_csvIngests",
+        "count": "[length(variables('csvExports'))]"
+      },
+      "type": "Microsoft.Automation/automationAccounts/schedules",
+      "apiVersion": "2020-01-13-preview",
+      "name": "[format('{0}/{1}', parameters('automationAccountName'), variables('csvExports')[copyIndex()].ingestSchedule)]",
+      "properties": {
+        "description": "[variables('csvExports')[copyIndex()].ingestDescription]",
+        "expiryTime": "9999-12-31T17:59:00-06:00",
+        "startTime": "[dateTimeAdd(parameters('baseTime'), variables('csvExports')[copyIndex()].ingestTimeOffset)]",
+        "interval": 1,
+        "frequency": "[variables('csvExports')[copyIndex()].ingestFrequency]"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName'))]"
+      ]
+    },
+    {
+      "type": "Microsoft.Automation/automationAccounts/schedules",
+      "apiVersion": "2020-01-13-preview",
+      "name": "[format('{0}/{1}', parameters('automationAccountName'), variables('remediationLogsIngestScheduleName'))]",
+      "properties": {
+        "description": "Starts the daily Remediation Logs ingests",
+        "expiryTime": "9999-12-31T17:59:00-06:00",
+        "startTime": "[dateTimeAdd(parameters('baseTime'), 'PT1H30M')]",
+        "interval": 1,
+        "frequency": "Day"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName'))]"
+      ]
+    },
+    {
+      "type": "Microsoft.Automation/automationAccounts/schedules",
+      "apiVersion": "2020-01-13-preview",
+      "name": "[format('{0}/{1}', parameters('automationAccountName'), variables('recommendationsScheduleName'))]",
+      "properties": {
+        "description": "Starts the weekly Recommendations generation",
+        "expiryTime": "9999-12-31T17:59:00-06:00",
+        "startTime": "[dateTimeAdd(parameters('baseTime'), 'PT2H30M')]",
+        "interval": 1,
+        "frequency": "Week"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName'))]"
+      ]
+    },
+    {
+      "type": "Microsoft.Automation/automationAccounts/schedules",
+      "apiVersion": "2020-01-13-preview",
+      "name": "[format('{0}/{1}', parameters('automationAccountName'), variables('recommendationsIngestScheduleName'))]",
+      "properties": {
+        "description": "Starts the weekly Recommendations ingests",
+        "expiryTime": "9999-12-31T17:59:00-06:00",
+        "startTime": "[dateTimeAdd(parameters('baseTime'), 'PT3H30M')]",
+        "interval": 1,
+        "frequency": "Week"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName'))]"
+      ]
+    },
+    {
+      "type": "Microsoft.Automation/automationAccounts/schedules",
+      "apiVersion": "2020-01-13-preview",
+      "name": "[format('{0}/{1}', parameters('automationAccountName'), variables('suppressionsIngestScheduleName'))]",
+      "properties": {
+        "description": "Starts the weekly Suppressions ingests",
+        "expiryTime": "9999-12-31T17:59:00-06:00",
+        "startTime": "[dateTimeAdd(parameters('baseTime'), 'PT3H00M')]",
+        "interval": 1,
+        "frequency": "Week"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName'))]"
+      ]
+    },
+    {
+      "type": "Microsoft.Automation/automationAccounts/schedules",
+      "apiVersion": "2020-01-13-preview",
+      "name": "[format('{0}/{1}', parameters('automationAccountName'), variables('recommendationsCleanUpScheduleName'))]",
+      "properties": {
+        "description": "Starts the weekly Recommendations cleanup",
+        "expiryTime": "9999-12-31T17:59:00-06:00",
+        "startTime": "[dateTimeAdd(parameters('baseTime'), 'P6D')]",
+        "interval": 1,
+        "frequency": "Week"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName'))]"
+      ]
+    },
+    {
+      "copy": {
+        "name": "automationJobSchedules_csvExports",
+        "count": "[length(variables('csvExports'))]"
+      },
+      "condition": "[not(variables('csvExports')[copyIndex()].isOneToMany)]",
+      "type": "Microsoft.Automation/automationAccounts/jobSchedules",
+      "apiVersion": "2020-01-13-preview",
+      "name": "[format('{0}/{1}', parameters('automationAccountName'), variables('csvExports')[copyIndex()].exportJobId)]",
+      "properties": {
+        "schedule": {
+          "name": "[variables('csvExports')[copyIndex()].exportSchedule]"
+        },
+        "runbook": {
+          "name": "[variables('csvExports')[copyIndex()].runbookName]"
+        }
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName'))]",
+        "automationModule_All",
+        "automationRunbooks",
+        "automationSchedules_csvExports"
+      ]
+    },
+    {
+      "copy": {
+        "name": "automationJobSchedules_csvParameterizedExports",
+        "count": "[length(variables('csvParameterizedExports'))]"
+      },
+      "type": "Microsoft.Automation/automationAccounts/jobSchedules",
+      "apiVersion": "2020-01-13-preview",
+      "name": "[format('{0}/{1}', parameters('automationAccountName'), variables('csvParameterizedExports')[copyIndex()].exportJobId)]",
+      "properties": {
+        "schedule": {
+          "name": "[variables('csvParameterizedExports')[copyIndex()].exportSchedule]"
+        },
+        "runbook": {
+          "name": "[variables('csvParameterizedExports')[copyIndex()].runbookName]"
+        },
+        "parameters": "[variables('csvParameterizedExports')[copyIndex()].parameters]"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName'))]",
+        "automationModule_All",
+        "automationRunbooks",
+        "automationSchedules_csvExports"
+      ]
+    },
+    {
+      "copy": {
+        "name": "automationJobSchedules_csvIngests",
+        "count": "[length(variables('csvExports'))]"
+      },
+      "type": "Microsoft.Automation/automationAccounts/jobSchedules",
+      "apiVersion": "2020-01-13-preview",
+      "name": "[format('{0}/{1}', parameters('automationAccountName'), variables('csvExports')[copyIndex()].ingestJobId)]",
+      "properties": {
+        "schedule": {
+          "name": "[variables('csvExports')[copyIndex()].ingestSchedule]"
+        },
+        "runbook": {
+          "name": "[variables('csvIngestRunbookName')]"
+        },
+        "parameters": {
+          "StorageSinkContainer": "[variables('csvExports')[copyIndex()].containerName]"
+        }
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName'))]",
+        "automationModule_All",
+        "automationRunbooks",
+        "automationSchedules_csvIngests"
+      ]
+    },
+    {
+      "type": "Microsoft.Automation/automationAccounts/jobSchedules",
+      "apiVersion": "2020-01-13-preview",
+      "name": "[format('{0}/{1}', parameters('automationAccountName'), parameters('remediationLogsIngestJobId'))]",
+      "properties": {
+        "schedule": {
+          "name": "[variables('remediationLogsIngestScheduleName')]"
+        },
+        "runbook": {
+          "name": "[variables('csvIngestRunbookName')]"
+        },
+        "parameters": {
+          "StorageSinkContainer": "[variables('remediationLogsContainerName')]"
+        }
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName'))]",
+        "automationModule_All",
+        "automationRunbooks",
+        "[resourceId('Microsoft.Automation/automationAccounts/schedules', parameters('automationAccountName'), variables('remediationLogsIngestScheduleName'))]"
+      ]
+    },
+    {
+      "copy": {
+        "name": "automationJobSchedules_recommendationsExports",
+        "count": "[length(variables('recommendations'))]"
+      },
+      "type": "Microsoft.Automation/automationAccounts/jobSchedules",
+      "apiVersion": "2020-01-13-preview",
+      "name": "[format('{0}/{1}', parameters('automationAccountName'), variables('recommendations')[copyIndex()].recommendationJobId)]",
+      "properties": {
+        "schedule": {
+          "name": "[variables('recommendationsScheduleName')]"
+        },
+        "runbook": {
+          "name": "[variables('recommendations')[copyIndex()].runbookName]"
+        }
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName'))]",
+        "automationModule_All",
+        "automationRunbooks",
+        "[resourceId('Microsoft.Automation/automationAccounts/schedules', parameters('automationAccountName'), variables('recommendationsScheduleName'))]"
+      ]
+    },
+    {
+      "type": "Microsoft.Automation/automationAccounts/jobSchedules",
+      "apiVersion": "2020-01-13-preview",
+      "name": "[format('{0}/{1}', parameters('automationAccountName'), parameters('recommendationsIngestJobId'))]",
+      "properties": {
+        "schedule": {
+          "name": "[variables('recommendationsIngestScheduleName')]"
+        },
+        "runbook": {
+          "name": "[variables('recommendationsIngestRunbookName')]"
+        }
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName'))]",
+        "automationModule_All",
+        "automationRunbooks",
+        "[resourceId('Microsoft.Automation/automationAccounts/schedules', parameters('automationAccountName'), variables('recommendationsIngestScheduleName'))]"
+      ]
+    },
+    {
+      "type": "Microsoft.Automation/automationAccounts/jobSchedules",
+      "apiVersion": "2020-01-13-preview",
+      "name": "[format('{0}/{1}', parameters('automationAccountName'), parameters('recommendationsLogAnalyticsIngestJobId'))]",
+      "properties": {
+        "schedule": {
+          "name": "[variables('recommendationsIngestScheduleName')]"
+        },
+        "runbook": {
+          "name": "[variables('recommendationsLogAnalyticsIngestRunbookName')]"
+        }
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName'))]",
+        "automationModule_All",
+        "automationRunbooks",
+        "[resourceId('Microsoft.Automation/automationAccounts/schedules', parameters('automationAccountName'), variables('recommendationsIngestScheduleName'))]"
+      ]
+    },
+    {
+      "type": "Microsoft.Automation/automationAccounts/jobSchedules",
+      "apiVersion": "2020-01-13-preview",
+      "name": "[format('{0}/{1}', parameters('automationAccountName'), parameters('suppressionsLogAnalyticsIngestJobId'))]",
+      "properties": {
+        "schedule": {
+          "name": "[variables('suppressionsIngestScheduleName')]"
+        },
+        "runbook": {
+          "name": "[variables('suppressionsLogAnalyticsIngestRunbookName')]"
+        }
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName'))]",
+        "automationModule_All",
+        "automationRunbooks",
+        "[resourceId('Microsoft.Automation/automationAccounts/schedules', parameters('automationAccountName'), variables('suppressionsIngestScheduleName'))]"
+      ]
+    },
+    {
+      "type": "Microsoft.Automation/automationAccounts/jobSchedules",
+      "apiVersion": "2020-01-13-preview",
+      "name": "[format('{0}/{1}', parameters('automationAccountName'), parameters('recommendationsCleanUpJobId'))]",
+      "properties": {
+        "schedule": {
+          "name": "[variables('recommendationsCleanUpScheduleName')]"
+        },
+        "runbook": {
+          "name": "[variables('cleanUpOlderRecommendationsRunbookName')]"
+        }
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName'))]",
+        "automationModule_All",
+        "automationRunbooks",
+        "[resourceId('Microsoft.Automation/automationAccounts/schedules', parameters('automationAccountName'), variables('recommendationsCleanUpScheduleName'))]"
+      ]
+    },
+    {
+      "type": "Microsoft.Authorization/roleAssignments",
+      "apiVersion": "2018-09-01-preview",
+      "name": "[parameters('contributorRoleAssignmentGuid')]",
+      "properties": {
+        "roleDefinitionId": "[parameters('roleContributor')]",
+        "principalId": "[reference(resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName')), '2019-06-01', 'Full').identity.principalId]",
+        "principalType": "ServicePrincipal"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName'))]"
+      ]
+    }
+  ],
+  "outputs": {
+    "automationPrincipalId": {
+      "type": "string",
+      "value": "[reference(resourceId('Microsoft.Automation/automationAccounts', parameters('automationAccountName')), '2019-06-01', 'Full').identity.principalId]"
+    }
+  }
+}
